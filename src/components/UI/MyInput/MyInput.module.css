@@ -1,0 +1,42 @@
+.myInput, .myInputError {
+    border-radius: .5em;
+    padding: 10px 5px;
+    border: 4px solid #2f6fb6;
+    color: #2f6fb6;
+    background-color: #ffcb05;
+}
+.myInputError {
+    border: 4px solid #de1b17;
+}
+
+.myValidText, .myValidTextError {
+    font-size: 15px;
+    color: #2f6fb6;
+}
+.myValidTextError {
+    color: #de1b17;
+}
+.myValidTextError::before {
+    display: inline;
+    content: "⚠ ";
+  }
+
+.myInputContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.myInputWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.myInputImgWrapper {
+    width: 70%;
+}
+
+.myInputImg {
+    height: 50px;
+    margin-right: 20px;
+}

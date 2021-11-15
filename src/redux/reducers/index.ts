@@ -1,8 +1,10 @@
-import { PokemonTypesReducer } from "./pokemonTypesReducer";
 import {combineReducers} from "redux";
+import {PokemonsReducer} from "./pokemonsReducer";
+import {reducer as FormReducer} from 'redux-form';
 
 export const rootReducer = combineReducers( {
-    pokemonTypes: PokemonTypesReducer
+    pokemons: PokemonsReducer,
+    form: FormReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

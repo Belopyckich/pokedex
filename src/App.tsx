@@ -1,13 +1,21 @@
-import React from 'react';
-import PokemonTypesList from './components/PokemonTypesList';
+import React, {useContext, useEffect} from 'react';
+import { AuthContext } from './context/AuthContext';
+import AppRouter from './router/AppRouter';
+import { BrowserRouter } from 'react-router-dom';
 
 const App = () =>  {
+  const {isAuth, setIsAuth} = useContext(AuthContext)
 
+  useEffect(() => {
+    if(localStorage.getItem('auth')) {
+      setIsAuth(true);
+    }
+  }, [])
 
   return (
-    <div className="App">
-        <PokemonTypesList/>  
-    </div>
+    <BrowserRouter>
+        <AppRouter/>
+    </BrowserRouter>
   );
 }
 
