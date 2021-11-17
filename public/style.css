@@ -15,10 +15,16 @@
 }
 
 * {
+    position: relative;
     font-family: Pokemon;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+}
+
+.root {
+    background-color: #75cae4;
+    height: 100vh;
 }
 

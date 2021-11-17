@@ -4,7 +4,8 @@ const initialState: PokemonsState = {
     pokemons: [],
     types: [],
     loading: false,
-    error: null
+    error: null,
+    pokemonsCount: 0
 }
 
 export const PokemonsReducer = (state = initialState, action: PokemonsAction) : PokemonsState => {
@@ -19,6 +20,8 @@ export const PokemonsReducer = (state = initialState, action: PokemonsAction) : 
             return {...state, loading: false, pokemons: action.payload}
         case PokemonsActionTypes.FETCH_POKEMONS_ERROR:
             return {...state, loading: false, error: action.payload}
+        case PokemonsActionTypes.FETCH_POKEMONS_COUNT:
+            return {...state, pokemonsCount: action.payload}
         default:
             return state;
     }

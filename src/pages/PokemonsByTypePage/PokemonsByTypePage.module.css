@@ -1,0 +1,42 @@
+.pokemonsByType {
+    height: calc(100vh - 100px);
+}
+.pokemonsWrapper {
+    height: calc(100vh - 200px);
+    display: grid;
+    grid-template: repeat(4, 20vh) / repeat(5, 20vw);
+}
+.pagesWrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.arrow, .pushLeftArrow, .leftArrow, .pushRightArrow, .rightArrow {
+    border: none;
+    width: 71px;
+    height: 72px;
+    cursor: pointer;
+}
+.pushLeftArrow {
+    transform: rotate(180deg);
+    background-color: white;
+    background: url("../../images/pagination/pushArrow.svg");
+}
+.leftArrow {
+    background: url("../../images/pagination/arrow.svg");
+    transform: rotate(180deg);
+}
+.pushRightArrow {
+    background: url("../../images/pagination/pushArrow.svg");
+}
+.rightArrow {
+    background: url("../../images/pagination/arrow.svg");
+}
+.pageNavigation {
+    color: rgb(51, 51, 51);
+    background-color: white;
+    width: 400px;
+    height: 50px;
+    text-align: center;
+    border-radius: 10px;
+}

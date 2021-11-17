@@ -1,0 +1,42 @@
+.loadingWrapper {
+   position: relative;
+   top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+}
+.leftPokedox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+}
+.rightPokedox {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+}
+.pokedex {
+    position:absolute;
+    top: 34%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    animation-name: loadingAnimation;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes loadingAnimation {
+    from {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+
+}
