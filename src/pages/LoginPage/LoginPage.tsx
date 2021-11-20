@@ -32,9 +32,11 @@ const Login: FC = () => {
   
     const {setIsAuth} = useContext(AuthContext);
   
-    const onSubmit: SubmitHandler<IFormInputs> = () => {
-         setIsAuth(true);
-         localStorage.setItem('auth', 'false');
+    const onSubmit: SubmitHandler<IFormInputs> = (data) => {
+        console.log(data);
+        setIsAuth(true);
+        localStorage.setItem('auth', 'false');
+        localStorage.setItem('user', data.name.toUpperCase());
     }
 
     return (

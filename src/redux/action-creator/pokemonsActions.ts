@@ -1,5 +1,5 @@
 import { instance } from '../../api/api';
-import { PokemonsAction, PokemonsActionTypes } from "../../types/pokemons"
+import { IPokemonProperty, PokemonsAction, PokemonsActionTypes } from "../../types/pokemons"
 import {Dispatch} from "redux";
 interface typeProps {
     name: string,
@@ -9,37 +9,44 @@ interface typeProps {
 export const fetchPokemonTypes = () => {
     return async (dispatch: Dispatch <PokemonsAction>) => {
         try {
-            dispatch({type: PokemonsActionTypes.FETCH_POKEMONS})
+            dispatch({type: PokemonsActionTypes.FETCH_DATA})
             setTimeout(async () => {
-                const response = await instance.get("https://pokeapi.co/api/v2/type");
                 let counter = 0;
-                dispatch({type: PokemonsActionTypes.FETCH_POKEMONTYPES_SUCCESS,
-                      payload: response.data.results.map((type: typeProps) => {
-                            counter += 1;
-                            return {...type, id: counter}
-                      }).slice(0, 18)
-                    });
+                const response = await instance.get("https://pokeapi.co/api/v2/type").then(
+                    response => dispatch({type: PokemonsActionTypes.FETCH_TYPES_SUCCESS,
+                        payload: response.data.results.map((type: typeProps) => {
+                              counter += 1;
+                              return {...type, id: counter}
+                        }).slice(0, 18)
+                    })
+                )
             }, 1000);
         } catch (e) {
-            dispatch({type: PokemonsActionTypes.FETCH_POKEMONTYPES_ERROR, payload: 'Произошла ошибка загрузки списка покемонов'});
+            dispatch({type: PokemonsActionTypes.FETCH_TYPES_ERROR, payload: 'Произошла ошибка загрузки списка покемонов'});
         }
     }
 }
 
-export const fetchPokemonsByPage = (id: string, page: number, limit = 20) => {
+export const fetchPokemonsByPage = (id: string) => {
     return async (dispatch: Dispatch <PokemonsAction>) => {
         try {
-            dispatch({type: PokemonsActionTypes.FETCH_POKEMONS})
+            dispatch({type: PokemonsActionTypes.FETCH_DATA})
             const response = await instance.get(`https://pokeapi.co/api/v2/type/${id}`);
-            dispatch({type: PokemonsActionTypes.FETCH_POKEMONS_COUNT, payload: response.data.pokemon.length});
-            dispatch({type: PokemonsActionTypes.FETCH_POKEMONS_SUCCESS, payload: 
-                      response.data.pokemon.map((item : {pokemon: any}) =>  {
-                        return {...item.pokemon}
-                      }).slice((page - 1) * limit, page * limit)
-                    })
+            dispatch({type: PokemonsActionTypes.FETCH_POKEMONS_BY_TYPE_SUCCESS, payload: {
+                    type: id,
+                    pokemons: {
+                        pokemons: response.data.pokemon.map((item : {pokemon: IPokemonProperty}) =>  {
+                            return item.pokemon
+                            })
+                        ,
+                        count: response.data.pokemon.length
+                    }
+                }
+            })
         } catch (e) {
-            dispatch({type: PokemonsActionTypes.FETCH_POKEMONS_ERROR, payload: 'Произошла ошибка загрузки списка типов покемонов'});
-
+            dispatch({type: PokemonsActionTypes.FETCH_POKEMONS_BY_TYPE_ERROR, payload: 'Произошла ошибка загрузки списка типов покемонов'});
         }
     }
 }
+
+

@@ -7,6 +7,6 @@ export const getPokemonProp = async (url : string, setPokemon : React.Dispatch<R
     const response =  await instance.get(url);
     setPokemon({
         img: response.data.sprites.front_default,
-        type: response.data.types
+        types: response.data.types.map((type : any) => type.type.name)
     })
 }

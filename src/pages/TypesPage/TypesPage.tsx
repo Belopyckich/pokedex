@@ -2,16 +2,11 @@ import React, {useEffect, FC} from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducers';
 import { useAction } from '../../hooks/useAction';
-import style from "./PokemonTypesPage.module.css";
+import style from "./TypesPage.module.css";
 import { useHistory } from 'react-router-dom';
 import Loading from '../../components/UI/Loading/Loading';
 import {PokemonTypesIcons} from "../../images/typeIcons/typeImages";
-
-export interface IPokemonType {
-    name: string
-    url: string,
-    id: string
-}
+import { IPokemonType } from '../../types/pokemons';
 
 const PokemonTypes: FC = () => {
     const {loading, error, types} = useSelector((state: RootState) => state.pokemons);
@@ -22,10 +17,11 @@ const PokemonTypes: FC = () => {
         fetchPokemonTypes();
     }, [])
 
+
     return (
         <div className={style.typesPage}>
             {loading ?
-                <Loading isLoad={loading}/>
+                <Loading/>
             :   
                 error ?
                      <h1>{error}</h1>

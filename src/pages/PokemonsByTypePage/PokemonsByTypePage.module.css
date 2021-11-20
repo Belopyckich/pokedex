@@ -1,36 +1,58 @@
 .pokemonsByType {
-    height: calc(100vh - 100px);
+    height: 90vh;
 }
 .pokemonsWrapper {
-    height: calc(100vh - 200px);
+    height: 80vh;
     display: grid;
     grid-template: repeat(4, 20vh) / repeat(5, 20vw);
 }
 .pagesWrapper {
+    border-top: 3px solid;
+    border-color: white;
+    background-color: #4991a7;
+    height: 10vh;
+    display: grid;
+}
+.pagesContainer {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 .arrow, .pushLeftArrow, .leftArrow, .pushRightArrow, .rightArrow {
     border: none;
-    width: 71px;
-    height: 72px;
     cursor: pointer;
+    height: 70px;
+    width: 70px;
 }
 .pushLeftArrow {
-    transform: rotate(180deg);
-    background-color: white;
-    background: url("../../images/pagination/pushArrow.svg");
+    background: url("../../images/pagination/pushLeftArrow.svg");
+    animation: leftAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 .leftArrow {
-    background: url("../../images/pagination/arrow.svg");
-    transform: rotate(180deg);
+    height: 60px;
+    background: url("../../images/pagination/leftArrow.svg");
+    animation: leftAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 .pushRightArrow {
-    background: url("../../images/pagination/pushArrow.svg");
+    background: url("../../images/pagination/pushRightArrow.svg");
+    animation: rightAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 .rightArrow {
-    background: url("../../images/pagination/arrow.svg");
+    height: 60px;
+    background: url("../../images/pagination/rightArrow.svg");
+    animation: rightAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 .pageNavigation {
     color: rgb(51, 51, 51);
@@ -39,4 +61,32 @@
     height: 50px;
     text-align: center;
     border-radius: 10px;
+}
+
+@keyframes leftAnimation {
+    from {
+        transform: translate(0)
+    }
+    50% {
+        transform: translate(-25px)
+    }
+    to {
+        transform: translate(0)
+    }
+}
+
+@keyframes rightAnimation {
+    from {
+        transform: translate(0)
+    }
+    50% {
+        transform: translate(25px)
+    }
+    to {
+        transform: translate(0)
+    }
+}
+
+.arrowDisable {
+    animation-name: none;
 }

@@ -1,14 +1,32 @@
 .navbar {
+    background-color: #4991a7;
     position: relative;
-    height: 100px;
+    height: 10vh;
     width: 100vw;
+    display: grid;
+    border-bottom: 3px solid;
+    border-color: white;
 }
 .navbarLinks {
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    gap: 20px;
-    justify-content: end;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2vw;
     align-items: center;
-    cursor: pointer;
+    height: 10vh;
+}
+.navbarLinks::before {
+    content: '';
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    left: 0;
+    top: 1vh;
+    background: url("../../images/NavBar/navbarLine.svg") no-repeat;
+}
+.userText {
+    color: white;
+    font-weight: 300;
+    margin: auto 0;
+    font-size: 30px;
 }

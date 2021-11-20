@@ -1,28 +1,34 @@
 import React, {FC, useEffect, useState} from 'react';
 import { getPokemonProp } from '../../api/api';
 import style from "./PokemonBlock.module.css";
-
+import { PokemonTypesIcons } from '../../images/typeIcons/typeImages';
+import { useHistory } from 'react-router-dom';
 interface PokemonProps {
-    pokemon: {name: string, url: string}
+    pokemon: {name: string, url: string},
+    typeID: string
 }
 export interface IPokemon {
     img: string,
-    type: any[]
+    types: string[]
 }
 
-const PokemonBlock: FC<PokemonProps> = ({pokemon}) => {
-    const [pokemonProperty, setPokemonProperty] = useState<IPokemon>({img: '', type: []});
-    const [isLoad, setIsLoad] = useState<boolean>(false); 
+const PokemonBlock: FC<PokemonProps> = ({pokemon, typeID}) => {
+    const [pokemonProperty, setPokemonProperty] = useState<IPokemon>({img: '', types: []});
+    const history = useHistory()
+    
     useEffect(() => {
-        setIsLoad(true);
         getPokemonProp(pokemon.url, setPokemonProperty);
-        setIsLoad(false);
     }, [])
-    console.log(pokemon);
+
     return (
-        <div>
-            <img src={pokemonProperty.img} alt={pokemon.name}/>
-            {pokemon.name}
+        <div className={style.block} onClick={() => history.push(`/type/${typeID}/${pokemon.name}`)}>
+            <img className={style.img}src={pokemonProperty.img} alt={pokemon.name}/>
+            <div className={style.types}>
+                {pokemonProperty.types.map((type : string) => 
+                    <img className={style.icon}  src={PokemonTypesIcons[type]} alt={type} key={`${type}mini`}/>
+                )}
+            </div>
+            <div className={style.name}>{pokemon.name}</div>
         </div>
     );
 };

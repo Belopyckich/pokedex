@@ -4,11 +4,7 @@ import pokedex from "../../../images/Loading/pokedex.png"
 import pokedexLeft from "../../../images/Loading/left-pokedex-display.png";
 import pokedexRight from "../../../images/Loading/right-pokedex-display.png";
 
-interface LoadingProps {
-    isLoad: boolean;
-}
-
-const Loading: React.FC<LoadingProps>= ({isLoad}) => {
+const Loading: React.FC = () => {
     return (
         <div className={style.loadingWrapper}>
             <img className={style.pokedex} src={pokedex} alt="pokedexLoading"/>

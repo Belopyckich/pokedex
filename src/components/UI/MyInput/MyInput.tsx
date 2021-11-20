@@ -4,7 +4,7 @@ import style from "./MyInput.module.css";
 interface MyInputProps {
     property: string,
     placeholder?: string,
-    message?: string | undefined,
+    message?: string,
     register: any,
     type?: string,
     img?: string,
