@@ -1,61 +1,90 @@
-export interface IPokemonProperty {
+export interface IPokemon {
     name: string,
-    url: string
+    height: number,
+    weight: number,
+    id: string,
+    stats: {
+        hp: number,
+        attack: number,
+        defense: number,
+        specialAttack: number,
+        specialDefense: number,
+        speed: number
+    }
+    sprites: {
+        icon: string,
+        main: string,
+        graphic: string
+    }
+    types: string[],
+    abilities: {name: string, url: string}[],
+    moves: {name: string, url: string}[]
 }
 export interface IPokemonType {
-    name: string
-    url: string,
-    id: string
-}
-
-export interface IPokemonTypeProperty {
-    pokemons: IPokemonProperty[],
+    id: string,
+    name: string,
+    pokemons: string[],
     count: number
 }
 export interface PokemonsState {
     types: IPokemonType[],
-    pokemons: { [type: string] : IPokemonTypeProperty},
     loading: boolean,
     error: null | string,
-    pokemonsCount: number
+    pokemons: {[pokemon: string] : IPokemon},
+    moves: {[move: string] : string},
+    abilities: {[ability: string] : string}
 }
 
 export enum PokemonsActionTypes {
     FETCH_DATA = "FETCH_DATA",
-    FETCH_POKEMONS_BY_TYPE_SUCCESS = "FETCH_POKEMONS_BY_TYPE_SUCCESS",
-    FETCH_POKEMONS_BY_TYPE_ERROR = "FETCH_POKEMONS_BY_TYPE_ERROR",
-    FETCH_TYPES_SUCCESS = "FETCH_TYPES_SUCCESS",
-    FETCH_TYPES_ERROR = "FETCH_TYPES_ERROR",
-    FETCH_POKEMONS_COUNT = "FETCH_POKEMONS_COUNT",
+    FETCH_ERROR = "FETCH_ERROR",
+    FETCH_TYPE = "FETCH_TYPE",
+    FETCH_SUCCESS = "FETCH_SUCCESS",
+    CLEAR_TYPES = "CLEAR_TYPES",
+    FETCH_ABILITY = "FETCH_ABILITY",
+    FETCH_MOVE = "FETCH_MOVE",
+    FETCH_POKEMON = "FETCH_POKEMON"
 }
 
-interface FetchPokemonsByTypeAction {
+interface FetchDataAction {
     type: PokemonsActionTypes.FETCH_DATA;
 }
-interface FetchPokemonsByTypeSuccessAction {
-    type: PokemonsActionTypes.FETCH_POKEMONS_BY_TYPE_SUCCESS;
-    payload: {type: string, pokemons: IPokemonTypeProperty};
-}
-interface FetchPokemonsByTypeErrorAction {
-    type: PokemonsActionTypes.FETCH_POKEMONS_BY_TYPE_ERROR;
-    payload: string;
-}
-interface FetchTypesSuccessAction {
-    type: PokemonsActionTypes.FETCH_TYPES_SUCCESS;
-    payload: IPokemonType[];
-}
-interface FetchTypesErrorAction {
-    type: PokemonsActionTypes.FETCH_TYPES_ERROR;
-    payload: string;
-}
-interface FetchPokemonsCountAction {
-    type: PokemonsActionTypes.FETCH_POKEMONS_COUNT;
-    payload: number;
+
+interface ClearTypes {
+    type: PokemonsActionTypes.CLEAR_TYPES;
 }
 
-export type PokemonsAction = FetchPokemonsByTypeAction | 
-                             FetchPokemonsByTypeSuccessAction | 
-                             FetchPokemonsByTypeErrorAction |
-                             FetchTypesSuccessAction | 
-                             FetchTypesErrorAction |
-                             FetchPokemonsCountAction
+interface FetchTypeAction {
+    type: PokemonsActionTypes.FETCH_TYPE;
+    payload: IPokemonType;
+}
+interface FetchErrorAction {
+    type: PokemonsActionTypes.FETCH_ERROR;
+    payload: string;
+}
+interface FetchPokemonAction {
+    type: PokemonsActionTypes.FETCH_POKEMON;
+    payload: {name: string, property:  IPokemon};
+}
+
+interface FetchSuccessAction {
+    type: PokemonsActionTypes.FETCH_SUCCESS;
+}
+interface FetchMoveAction {
+    type: PokemonsActionTypes.FETCH_MOVE;
+    payload: {name: string, description: string};
+}
+
+interface FetchAbilityAction {
+    type: PokemonsActionTypes.FETCH_ABILITY;
+    payload: {name: string, description: string};
+}
+
+export type PokemonsAction = FetchDataAction | 
+                             FetchTypeAction | 
+                             FetchErrorAction | 
+                             FetchPokemonAction |
+                             FetchMoveAction |
+                             FetchAbilityAction |
+                             FetchSuccessAction |
+                             ClearTypes 

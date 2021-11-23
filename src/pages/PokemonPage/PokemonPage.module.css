@@ -1,0 +1,120 @@
+.pokemon {
+    font-weight: 100;
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 60vh minmax(300px, auto);
+    background-color: #75cae4;
+}
+.info {
+    padding: 20px;
+    display: grid;
+    grid-template: 10% 90% / 30% 40% 30%;
+    align-items: center;
+    justify-items: center;
+}
+.stats {
+    width: 100%;
+    display: flex;
+    font-size: 40px;
+    flex-direction: column;
+    gap: 20px;
+}
+.stat {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    border-radius: 20px;
+    color: black;
+}
+.stat_name {
+    padding: 5px;
+    border-radius: 20px 0 0 20px;
+    background: #4991a7;
+    text-align: center;
+}
+.header {
+    font-size: 45px;
+    grid-area: 1/ 1/ auto/ span 3;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.stat_value {
+    padding: 5px;
+    border-radius: 0 20px 20px 0;
+    background: white;
+    text-align: center;
+}
+.stat_value_img {
+    background: white;
+    height: 30px;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+}
+
+.abilities {
+    background-color: #4991a7;
+    border-top: solid 3px white;
+    border-bottom: solid 3px white;
+}
+
+.properties {
+    width: 100%;
+    display: flex;
+    font-size: 40px;
+    flex-direction: column;
+    gap: 50px;
+    border-radius: 20px;
+}
+
+.property {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.propertyIcon {
+    width: 60px;
+    height: 60px;
+}
+.propertyTypeWrapper {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+.propertyTypes {
+    display: flex;
+    justify-content: space-around;
+}
+.abilities {
+    padding: 40px;
+    display: flex;
+}
+.abilities::before {
+    content: 'ABILITIES';
+    position: absolute;
+    font-size: 45px;
+    top: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4991a7;
+    border-radius: 20px;
+    padding: 20px;
+    border: 3px solid white;
+}
+.ability {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ability_header {
+    font-size: 45px;
+    text-align: center;
+}
+.ability_description {
+    text-align: center;
+    padding:10px;
+}

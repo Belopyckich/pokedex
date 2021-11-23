@@ -5,6 +5,7 @@
     justify-content: center;
     width: 100vw;
     height: 90vh;
+    background-color: #75cae4;
 }
 .pokemonTypesWrapper {
     display: grid;

@@ -1,4 +1,4 @@
-import React, {FC, useContext} from 'react';
+import React, {FC, useContext, useEffect} from 'react';
 import style from "./LoginPage.module.css";
 import headerImg from "../../images/loginPageImages/autorisation.png";
 import { AuthContext } from '../../context/AuthContext';
@@ -16,7 +16,7 @@ type IFormInputs = {
 }
 
 const schema = yup.object({
-  name: yup.string().min(3).required(),
+  name: yup.string().min(3).required().max(8),
   password: yup.string().min(6).required(),
 }).required()
 
@@ -33,7 +33,6 @@ const Login: FC = () => {
     const {setIsAuth} = useContext(AuthContext);
   
     const onSubmit: SubmitHandler<IFormInputs> = (data) => {
-        console.log(data);
         setIsAuth(true);
         localStorage.setItem('auth', 'false');
         localStorage.setItem('user', data.name.toUpperCase());
