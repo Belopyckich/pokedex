@@ -30,12 +30,13 @@ const Login: FC = () => {
         resolver: yupResolver(schema)
     })
   
-    const {setIsAuth} = useContext(AuthContext);
+    const {setIsAuth, setUserLikes} = useContext(AuthContext);
   
     const onSubmit: SubmitHandler<IFormInputs> = (data) => {
         setIsAuth(true);
         localStorage.setItem('auth', 'false');
         localStorage.setItem('user', data.name.toUpperCase());
+        setUserLikes(JSON.parse(localStorage.getItem("lovelyPokemons") || '{}'));
     }
 
     return (

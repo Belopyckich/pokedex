@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useContext, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import PokemonBlock from "../../components/PokemonBlock/PokemonBlock";
-import Loading from "../../components/UI/Loading/Loading";
+import Pagination from "../../components/UI/Pagination/Pagination";
+import { AuthContext } from "../../context/AuthContext";
+import { SearchContext } from "../../context/SearchContext";
 import { useAction } from "../../hooks/useAction";
 import { RootState } from "../../redux/reducers";
-import { IPokemonType } from "../../types/pokemons";
+import { IPokemonType, PokemonsActionTypes } from "../../types/pokemons";
 import style from "./PokemonsByTypePage.module.css";
 
 const PokemonsByTypePage: React.FC = () => {
   const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
-  const loading = useSelector((state: RootState) => state.pokemons.loading);
   const types = useSelector((state: RootState) => state.pokemons.types);
 
   const { id } = useParams<{ id: string }>();
@@ -18,7 +19,9 @@ const PokemonsByTypePage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState<number>(1);
 
-  const limit = 20;
+  const {userLikes} = useContext(AuthContext);
+  const {limit, setIsLimitActive, setIsSearchBarActive} = useContext(SearchContext);
+
   const currentType = types.find(
     (type: IPokemonType) => type.id.toString() === id
   );
@@ -26,70 +29,31 @@ const PokemonsByTypePage: React.FC = () => {
   const { fetchPokemonsByType } = useAction();
 
   useEffect(() => {
-    fetchPokemonsByType(id);
+    setIsLimitActive(true);
+    setIsSearchBarActive(false);
+    fetchPokemonsByType(id, userLikes);
     if (currentType) {
-      setPageCount(Math.ceil(currentType?.count / 20));
+      setPageCount(Math.ceil(currentType?.count / limit));
     }
-  }, []);
+  }, [limit]);
 
   return (
-    <div>
-      {loading ? (
-        <Loading />
-      ) : (
-        <div className={style.pokemonsByType}>
-          
-          <div className={style.pokemonsWrapper}>
-            {currentType?.pokemons.map(pokemon => (
-              <PokemonBlock pokemon={pokemons[pokemon]} key={pokemons[pokemon]?.id} typeID={id}/>
-            )).slice((currentPage - 1) * limit, currentPage * limit)}
-          </div>
-
-          <div className={style.pagesWrapper}>
-            <div className={style.pagesContainer}>
-              <button
-                className={
-                  currentPage === 1
-                    ? `${style.arrowDisable} ${style.pushLeftArrow}`
-                    : style.pushLeftArrow
-                }
-                disabled={currentPage === 1}
-                onClick={() => setCurrentPage(currentPage + 1)}
+    <div className={style.pokemonsByType}>
+      <div className={style.pokemonsWrapper}>
+        {currentType?.pokemons
+          .map((pokemon, index) =>
+            pokemons[pokemon] ? (
+              <PokemonBlock
+                pokemon={pokemons[pokemon]}
+                key={`${pokemons[pokemon]?.id}${currentType}` ?? `${index}${currentType}`}
               />
-              <button
-                className={
-                  currentPage === 1
-                    ? `${style.arrowDisable} ${style.leftArrow}`
-                    : style.leftArrow
-                }
-                disabled={currentPage === 1}
-                onClick={() => setCurrentPage(currentPage - 1)}
-              />
-              <div className={style.pageNavigation}>
-                {currentPage}/{pageCount}
-              </div>
-              <button
-                className={
-                  currentPage === pageCount
-                    ? `${style.arrowDisable} ${style.rightArrow}`
-                    : style.rightArrow
-                }
-                disabled={currentPage === pageCount}
-                onClick={() => setCurrentPage(currentPage + 1)}
-              />
-              <button
-                className={
-                  currentPage === pageCount
-                    ? `${style.arrowDisable} ${style.pushRightArrow}`
-                    : style.pushRightArrow
-                }
-                disabled={currentPage === pageCount}
-                onClick={() => setCurrentPage(pageCount)}
-              />
-            </div>
-          </div>
-        </div>
-      )}
+            ) : (
+              <div></div>
+            )
+          )
+          .slice((currentPage - 1) * limit, currentPage * limit)}
+      </div>
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pageCount={pageCount}/>
     </div>
   );
 };

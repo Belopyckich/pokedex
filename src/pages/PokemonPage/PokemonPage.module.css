@@ -2,13 +2,15 @@
     font-weight: 100;
     color: rgb(0, 0, 0);
     font-size: 30px;
-    width: 100vw;
-    display: grid;
-    grid-template-rows: 60vh minmax(300px, auto);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     background-color: #75cae4;
 }
 .info {
-    padding: 20px;
+    margin: 13vh 0;
+    height: 100%;
+    padding: 0 20px;
     display: grid;
     grid-template: 10% 90% / 30% 40% 30%;
     align-items: center;
@@ -96,7 +98,7 @@
     content: 'ABILITIES';
     position: absolute;
     font-size: 45px;
-    top: -15%;
+    top: -40px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #4991a7;

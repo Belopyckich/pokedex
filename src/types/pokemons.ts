@@ -3,6 +3,7 @@ export interface IPokemon {
     height: number,
     weight: number,
     id: string,
+    isLike: boolean,
     stats: {
         hp: number,
         attack: number,
@@ -14,7 +15,8 @@ export interface IPokemon {
     sprites: {
         icon: string,
         main: string,
-        graphic: string
+        graphic: string,
+        artwork: string,
     }
     types: string[],
     abilities: {name: string, url: string}[],
@@ -43,9 +45,18 @@ export enum PokemonsActionTypes {
     CLEAR_TYPES = "CLEAR_TYPES",
     FETCH_ABILITY = "FETCH_ABILITY",
     FETCH_MOVE = "FETCH_MOVE",
-    FETCH_POKEMON = "FETCH_POKEMON"
+    FETCH_POKEMON = "FETCH_POKEMON",
+    ACTIVATE_LIKE = "ACTIVATE_LIKE",
+    DEACTIVATE_LIKE = "DEACTIVATE_LIKE"
 }
-
+interface ActivateLike {
+    type: PokemonsActionTypes.ACTIVATE_LIKE;
+    payload: string,
+}
+interface DeactivateLike {
+    type: PokemonsActionTypes.DEACTIVATE_LIKE;
+    payload: string
+}
 interface FetchDataAction {
     type: PokemonsActionTypes.FETCH_DATA;
 }
@@ -87,4 +98,6 @@ export type PokemonsAction = FetchDataAction |
                              FetchMoveAction |
                              FetchAbilityAction |
                              FetchSuccessAction |
-                             ClearTypes 
+                             ClearTypes |
+                             ActivateLike |
+                             DeactivateLike 

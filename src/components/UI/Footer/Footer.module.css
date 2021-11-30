@@ -1,0 +1,70 @@
+.myFooter {
+    padding: 20px;
+    display: flex;
+    height: 25vh;
+    gap: 20px;
+    background-color: #4991a7;
+    border-top: 3px solid white;
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+}
+.myPikachu {
+    content: '';
+    width: 200px;
+    position:absolute;
+    top: 51%;
+    left: 0;
+}
+.myWiggly {
+    content: '';
+    height: 90%;
+    overflow: hidden;
+    position:absolute;
+    top: 10%;
+    right: 0;
+}
+.myFooter__header {
+    font-size: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.myFooter__wrapper {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.myFooter__component {
+    width: 20%;
+    gap: 22px;
+    display: flex;
+    flex-direction: column;
+}
+.component__header {
+    text-align: center;
+}
+.component__wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+.component__icon__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.component__icon {
+    width: 70px;
+    height: 70px;
+}
+.component__pokeapi__icon {
+    margin: 0 auto;
+    width: 230px;
+    height: 100%;
+}
+.component__squad__icon {
+    width: 240px;
+    height: 100%;
+    margin: 0 auto;
+}

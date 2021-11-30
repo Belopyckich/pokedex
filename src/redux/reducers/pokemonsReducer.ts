@@ -1,3 +1,4 @@
+import { stat } from "fs";
 import { PokemonsState, PokemonsAction, PokemonsActionTypes  } from "../../types/pokemons";
 
 const initialState: PokemonsState = {
@@ -27,6 +28,10 @@ export const PokemonsReducer = (state = initialState, action: PokemonsAction) : 
             return {...state, moves: {...state.moves, [action.payload.name] : action.payload.description}}
         case PokemonsActionTypes.FETCH_ABILITY:
             return {...state, abilities: {...state.abilities, [action.payload.name] : action.payload.description}}
+        case PokemonsActionTypes.DEACTIVATE_LIKE:
+            return {...state, pokemons: {...state.pokemons, [action.payload] : {...state.pokemons[action.payload], isLike: false }}}
+        case PokemonsActionTypes.ACTIVATE_LIKE:
+            return {...state, pokemons: {...state.pokemons, [action.payload] : {...state.pokemons[action.payload], isLike: true }}}
         default:
             return state;
     }

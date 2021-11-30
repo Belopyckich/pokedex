@@ -19,7 +19,7 @@ const AppRouter: React.FC = () => {
                     exact={route.exact}
                 />
             )}
-            <Redirect to="/type"/>
+            <Redirect to="/pokemons"/>
         </Switch>
 
         :

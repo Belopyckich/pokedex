@@ -1,7 +1,9 @@
 .block {
+    width: 314px;
+    height: 329px;
     position: relative;
+    cursor: pointer;
     display: grid;
-    grid-template: 50% 25%/ 50% 30px;
     justify-content: center;
     align-content: center;
 }
@@ -11,16 +13,46 @@
     width: 100%;
     height: 100%;
     position:absolute;
-    left: -7%;
+    left: -4%;
     top: 10%;
+}
+.heartIcon, .heartDisabled {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 27px;
+    height: 24px;
+    top: 22.4%;
+    left: 10%;
+    background: url('../../images/PokemonPageImages/heartEnabled.svg');
+}
+.heartDisabled {
+    background: url('../../images/PokemonPageImages/heartDisabled.svg');
+}
+.block:hover {
+    animation-name: jump;
+    animation-duration: 1s;
+    animation-iteration-count:initial;
+    animation-timing-function: linear;
+}
+
+@keyframes jump {
+    from {
+        transform:scaleY(0px);
+    }
+    to {
+        transform: scaleY(10px);
+    }
 }
 .icon {
     width: 30px;
     height: 30px;
 }
 .img {
-    transform: scale(1.5);
-    margin: auto auto;
+    position: relative;
+    width: 144px;
+    height: 144px;
 }
 .types {
     width: 30px;
@@ -28,6 +60,7 @@
     flex-direction: column;
 }
 .name {
+    margin-top: 10px;
     grid-area: 2/1/span 1/span 2;
     font-weight: 100;
     text-align: center;
@@ -37,5 +70,4 @@
     border: 2px solid;
     font-size: 27px;
     padding: 5px;
-    margin: auto 0;
 }

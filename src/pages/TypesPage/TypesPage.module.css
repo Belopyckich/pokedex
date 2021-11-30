@@ -1,17 +1,14 @@
 .typesPage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 90vh;
+    min-height: 90vh;
+    min-width: 100vw;
     background-color: #75cae4;
 }
 .pokemonTypesWrapper {
-    display: grid;
-    grid-template: repeat(3, minmax(20vh, auto)) / repeat(6, auto);
-    grid-row-gap: 50px;
-    grid-column-gap: 120px;
+    padding-top: 13vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
 }
 .pokemonTypeText {
     text-align: center;
