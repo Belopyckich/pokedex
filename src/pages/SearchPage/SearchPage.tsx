@@ -17,6 +17,7 @@ import { getPokemonsBySelectedSort } from "../../utils/getPokemonsBySelectedSort
 const SearchPage = () => {
   const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
   const loading = useSelector((state: RootState) => state.pokemons.loading);
+  const pokemonsCount = useSelector((state: RootState) => state.pokemons.pokemonsCount);
 
   const [searchCurrentPage, setSearchCurrentPage] = useState(1);
   const [searchPageCount, setSearchPageCount] = useState<number>(1);
@@ -32,22 +33,22 @@ const SearchPage = () => {
     selectedSort,
   } = useContext(SearchContext);
 
-  const { fetchAllPokemons } = useAction();
+  const { fetchPokemons, fetchPokemonsCount } = useAction();
 
   useEffect(() => {
+    fetchPokemonsCount();
     setIsLimitActive(true);
     setIsSearchBarActive(true);
-    fetchAllPokemons(userLikes);
   }, []);
 
   useEffect(() => {
-    console.log(pokemons);
-    console.log(loading);
+    fetchPokemons(userLikes, pokemonsCount);
+  }, [pokemonsCount])
+
+  useEffect(() => {
     setSearchCurrentPage(1);
     debouncedPokemons();
-  }, [loading, selectedSort, search, limit, pokemons] )
-
-  useEffect(() => console.log(currentPokemons), [currentPokemons])
+  }, [loading, selectedSort, search, limit] )
 
   const debouncedPokemons = debounce(async() => {
       const {sortedPokemons, sortedPokemonsCount} = getPokemonsBySelectedSort(
@@ -63,7 +64,7 @@ const SearchPage = () => {
 
 
 
-  if (loading ) {
+  if (loading) {
     return (
       <div className={style.search}>
         <Loading />

@@ -1,4 +1,3 @@
-import { stat } from "fs";
 import { PokemonsState, PokemonsAction, PokemonsActionTypes  } from "../../types/pokemons";
 
 const initialState: PokemonsState = {
@@ -7,7 +6,8 @@ const initialState: PokemonsState = {
     loading: false,
     error: null,
     moves: {},
-    abilities: {}
+    abilities: {},
+    pokemonsCount: 1
 }
 
 export const PokemonsReducer = (state = initialState, action: PokemonsAction) : PokemonsState => {
@@ -20,6 +20,8 @@ export const PokemonsReducer = (state = initialState, action: PokemonsAction) : 
             return {...state, loading: false, error: action.payload}
         case PokemonsActionTypes.FETCH_POKEMON:
             return {...state, pokemons: {...state.pokemons, [action.payload.name] : action.payload.property}}
+        case PokemonsActionTypes.FETCH_POKEMONS:
+            return {...state, pokemons: action.payload}
         case PokemonsActionTypes.FETCH_SUCCESS:
             return {...state, loading: false}
         case PokemonsActionTypes.CLEAR_TYPES:
@@ -32,6 +34,8 @@ export const PokemonsReducer = (state = initialState, action: PokemonsAction) : 
             return {...state, pokemons: {...state.pokemons, [action.payload] : {...state.pokemons[action.payload], isLike: false }}}
         case PokemonsActionTypes.ACTIVATE_LIKE:
             return {...state, pokemons: {...state.pokemons, [action.payload] : {...state.pokemons[action.payload], isLike: true }}}
+        case PokemonsActionTypes.FETCH_POKEMONS_COUNT:
+            return {...state, pokemonsCount: action.payload}
         default:
             return state;
     }

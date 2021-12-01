@@ -34,7 +34,8 @@ export interface PokemonsState {
     error: null | string,
     pokemons: {[pokemon: string] : IPokemon},
     moves: {[move: string] : string},
-    abilities: {[ability: string] : string}
+    abilities: {[ability: string] : string},
+    pokemonsCount: number
 }
 
 export enum PokemonsActionTypes {
@@ -47,7 +48,9 @@ export enum PokemonsActionTypes {
     FETCH_MOVE = "FETCH_MOVE",
     FETCH_POKEMON = "FETCH_POKEMON",
     ACTIVATE_LIKE = "ACTIVATE_LIKE",
-    DEACTIVATE_LIKE = "DEACTIVATE_LIKE"
+    DEACTIVATE_LIKE = "DEACTIVATE_LIKE",
+    FETCH_POKEMONS_COUNT = "FETCH_POKEMONS_COUNT",
+    FETCH_POKEMONS = "FETCH_POKEMONS"
 }
 interface ActivateLike {
     type: PokemonsActionTypes.ACTIVATE_LIKE;
@@ -91,6 +94,16 @@ interface FetchAbilityAction {
     payload: {name: string, description: string};
 }
 
+interface FetchPokemonsCountAction {
+    type: PokemonsActionTypes.FETCH_POKEMONS_COUNT;
+    payload: number
+}
+
+interface FetchPokemonsAction {
+    type: PokemonsActionTypes.FETCH_POKEMONS;
+    payload:  {[pokemon: string] : IPokemon}
+}
+
 export type PokemonsAction = FetchDataAction | 
                              FetchTypeAction | 
                              FetchErrorAction | 
@@ -100,4 +113,6 @@ export type PokemonsAction = FetchDataAction |
                              FetchSuccessAction |
                              ClearTypes |
                              ActivateLike |
-                             DeactivateLike 
+                             DeactivateLike |
+                             FetchPokemonsCountAction |
+                             FetchPokemonsAction

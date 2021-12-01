@@ -9,7 +9,7 @@ export const fetchTypes = () => {
         try {
             dispatch({ type: PokemonsActionTypes.FETCH_DATA })
             dispatch({ type: PokemonsActionTypes.CLEAR_TYPES });
-            
+
             setTimeout(async () => {
                 await instance.get("https://pokeapi.co/api/v2/type").then(
                     response => response.data.results.slice(0, 18).map((type: { name: string, url: string }) =>
@@ -36,15 +36,41 @@ export const fetchType = async (url: string) => {
     }
 }
 
-export const fetchAllPokemons = (userLikes: string[]) => {
+export const fetchPokemonsCount = () => {
     return async (dispatch: Dispatch<PokemonsAction>) => {
         try {
-            await instance.get(`https://pokeapi.co/api/v2/pokemon?limit=1118`).then(
+            await instance.get(`https://pokeapi.co/api/v2/pokemon`).then(
+                response => dispatch({ type: PokemonsActionTypes.FETCH_POKEMONS_COUNT, payload: response.data.count })
+            )
+        } catch (e) {
+            dispatch({ type: PokemonsActionTypes.FETCH_ERROR, payload: `Произошла ошибка загрузки количества покемонов` })
+        }
+    }
+}
+
+export const fetchPokemons = (userLikes: string[], count: number) => {
+    return async (dispatch: Dispatch<PokemonsAction>) => {
+        try {
+            dispatch({ type: PokemonsActionTypes.FETCH_DATA });
+
+            let tempPokemons: { [pokemon: string]: IPokemon } = {}; //ОБЪВЛЯЕМ ЗАЛУПУ
+
+
+            await instance.get(`https://pokeapi.co/api/v2/pokemon?limit=${count}`).then(
                 response => response.data.results.forEach(((pokemon: { name: string, url: string }) => {
                     const isLikeValue = userLikes.includes(pokemon.name);
+
                     fetchPokemon(pokemon.url, isLikeValue).then((data: IPokemon) => {
-                        dispatch({ type: PokemonsActionTypes.FETCH_POKEMON, payload: { name: pokemon.name, property: data } });
-                    })})))
+                        tempPokemons = { ...tempPokemons, [pokemon.name]: data };
+                        console.log(tempPokemons); // ПОКЕМОНЫ ЗАГРУЖАЮТСЯ
+                        
+                    })
+
+                }))
+            )
+            console.log(tempPokemons); //ПУСТО
+            dispatch({type: PokemonsActionTypes.FETCH_POKEMONS, payload: tempPokemons});
+            dispatch({ type: PokemonsActionTypes.FETCH_SUCCESS });
         } catch (e) {
             dispatch({ type: PokemonsActionTypes.FETCH_ERROR, payload: 'Произошла ошибка загрузки покемонов' });
         }
@@ -87,7 +113,8 @@ export const fetchPokemonsByType = (id: string, userLikes: string[]) => {
                         const isLikeValue = userLikes.includes(pokemon.pokemon.name);
                         fetchPokemon(pokemon.pokemon.url, isLikeValue).then((data: IPokemon) => {
                             dispatch({ type: PokemonsActionTypes.FETCH_POKEMON, payload: { name: pokemon.pokemon.name, property: data } });
-                        })}))
+                        })
+                    }))
                 }
             )
             dispatch({ type: PokemonsActionTypes.FETCH_SUCCESS });
@@ -97,7 +124,7 @@ export const fetchPokemonsByType = (id: string, userLikes: string[]) => {
     }
 }
 
-export const fetchPokemon = async (url: string, isLikeValue : boolean) => {
+export const fetchPokemon = async (url: string, isLikeValue: boolean) => {
     const response = await instance.get(url);
     return {
         name: response.data?.name,
