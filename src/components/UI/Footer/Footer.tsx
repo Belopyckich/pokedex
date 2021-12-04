@@ -4,7 +4,6 @@ import reactIcon from "../../../images/Footer/react.svg";
 import axiosIcon from "../../../images/Footer/axios.svg";
 import reduxIcon from "../../../images/Footer/redux.svg";
 import pokeapi from "../../../images/Footer/pokeapi.png";
-import squad from "../../../images/Footer/squad.png";
 import pikachu from '../../../images/Footer/pikachu.svg';
 import wiggly from '../../../images/Footer/wiggly.png'
 
@@ -35,10 +34,6 @@ const Footer : React.FC = () => {
                 <div className={style.myFooter__component}>
                     <div className={style.component__header}>WITH</div>
                     <img className={style.component__pokeapi__icon} src={pokeapi} alt="pokeapi"></img>
-                </div>
-                <div className={style.myFooter__component}>
-                    <div className={style.component__header}>BY</div>
-                    <img className={style.component__squad__icon} src={squad} alt="squad"></img>
                 </div>
             </div>
         </div>

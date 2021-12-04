@@ -1,26 +1,17 @@
 import React, {FC, useContext, useEffect} from 'react';
 import style from "./PokemonBlock.module.css";
 import { PokemonTypesIcons } from '../../images/typeIcons/typeImages';
-import { useHistory } from 'react-router-dom';
 import { IPokemon, PokemonsActionTypes } from '../../types/pokemons';
-import { SearchContext } from '../../context/SearchContext';
 import { useDispatch } from 'react-redux';
 import { AuthContext } from '../../context/AuthContext';
 interface PokemonProps {
     pokemon: IPokemon,
+    onClick: any
 }
 
-const PokemonBlock: FC<PokemonProps> = ({pokemon}) => {
-    const history = useHistory()
+const PokemonBlock: FC<PokemonProps> = ({pokemon, onClick}) => {
     const dispatch = useDispatch()
     const {userLikes, setUserLikes} = useContext(AuthContext);
-
-    const {setSearch} = useContext(SearchContext);
-
-    const openPokemon = () => {
-        history.push(`/pokemons/${pokemon.name}`);
-        setSearch('');
-    }
 
     const likePokemon = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
@@ -40,7 +31,7 @@ const PokemonBlock: FC<PokemonProps> = ({pokemon}) => {
     
     return (
         <div>
-            <div className={style.block} onClick={openPokemon}>
+            <div className={style.block} onClick={onClick}>
             <div className={pokemon.isLike ? style.heartIcon : `${style.heartIcon} ${style.heartDisabled}`} onClick={likePokemon}></div>
             <img className={style.img} src={Object.values(pokemon?.sprites).find(sprite => sprite !== null)} alt={pokemon?.name}/>
             <div className={style.types}>

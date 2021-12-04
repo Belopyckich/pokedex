@@ -7,18 +7,14 @@ const instance = axios.create();
 export const fetchTypes = () => {
     return async (dispatch: Dispatch<PokemonsAction>) => {
         try {
-            dispatch({ type: PokemonsActionTypes.FETCH_DATA })
-            dispatch({ type: PokemonsActionTypes.CLEAR_TYPES });
-
+            dispatch({ type: PokemonsActionTypes.LOADING_ON})
             setTimeout(async () => {
-                await instance.get("https://pokeapi.co/api/v2/type").then(
-                    response => response.data.results.slice(0, 18).map((type: { name: string, url: string }) =>
-                        fetchType(type.url).then((data: IPokemonType) => {
-                            dispatch({ type: PokemonsActionTypes.FETCH_TYPE, payload: data })
-                        })
-                    )
-                )
-                dispatch({ type: PokemonsActionTypes.FETCH_SUCCESS });
+                const typesUrl = await instance.get("https://pokeapi.co/api/v2/type").then(response => response.data.results.slice(0, 18));
+                const types : IPokemonType[] = await Promise.all(typesUrl.map(async (type: { name: string, url: string }) => {
+                    const typeProperty : IPokemonType = await fetchType(type.url).then((data : IPokemonType) => data);
+                    return typeProperty;
+                }))
+                dispatch({type: PokemonsActionTypes.FETCH_TYPES, payload: types});
             }, 1000);
         } catch (e) {
             dispatch({ type: PokemonsActionTypes.FETCH_ERROR, payload: 'Произошла ошибка загрузки списка покемонов' });
@@ -36,41 +32,20 @@ export const fetchType = async (url: string) => {
     }
 }
 
-export const fetchPokemonsCount = () => {
+export const fetchPokemons = (userLikes: string[]) => {
     return async (dispatch: Dispatch<PokemonsAction>) => {
         try {
-            await instance.get(`https://pokeapi.co/api/v2/pokemon`).then(
-                response => dispatch({ type: PokemonsActionTypes.FETCH_POKEMONS_COUNT, payload: response.data.count })
-            )
-        } catch (e) {
-            dispatch({ type: PokemonsActionTypes.FETCH_ERROR, payload: `Произошла ошибка загрузки количества покемонов` })
-        }
-    }
-}
-
-export const fetchPokemons = (userLikes: string[], count: number) => {
-    return async (dispatch: Dispatch<PokemonsAction>) => {
-        try {
-            dispatch({ type: PokemonsActionTypes.FETCH_DATA });
-
-            let tempPokemons: { [pokemon: string]: IPokemon } = {}; //ОБЪВЛЯЕМ ЗАЛУПУ
-
-
-            await instance.get(`https://pokeapi.co/api/v2/pokemon?limit=${count}`).then(
-                response => response.data.results.forEach(((pokemon: { name: string, url: string }) => {
-                    const isLikeValue = userLikes.includes(pokemon.name);
-
-                    fetchPokemon(pokemon.url, isLikeValue).then((data: IPokemon) => {
-                        tempPokemons = { ...tempPokemons, [pokemon.name]: data };
-                        console.log(tempPokemons); // ПОКЕМОНЫ ЗАГРУЖАЮТСЯ
-                        
-                    })
-
-                }))
-            )
-            console.log(tempPokemons); //ПУСТО
+            dispatch({ type: PokemonsActionTypes.LOADING_ON });
+            const pokemonsCount = await instance.get(`https://pokeapi.co/api/v2/pokemon`).then(response => response.data.count);
+            const pokemons = await instance.get(`https://pokeapi.co/api/v2/pokemon?limit=${pokemonsCount}`);
+            const pokemonsProperties : IPokemon[] = await Promise.all(pokemons.data.results.map(async (pokemon: {name: string, url: string}) => {
+                const isLikeValue = userLikes.includes(pokemon.name);
+                const property : IPokemon = await fetchPokemon(pokemon.url, isLikeValue).then(data => data);
+                return property;
+            }))
+            let tempPokemons : {[pokemon: string] : IPokemon} = {};
+            pokemonsProperties.forEach((property : IPokemon) => tempPokemons = {...tempPokemons, [property.name] : property});
             dispatch({type: PokemonsActionTypes.FETCH_POKEMONS, payload: tempPokemons});
-            dispatch({ type: PokemonsActionTypes.FETCH_SUCCESS });
         } catch (e) {
             dispatch({ type: PokemonsActionTypes.FETCH_ERROR, payload: 'Произошла ошибка загрузки покемонов' });
         }
@@ -80,10 +55,8 @@ export const fetchPokemons = (userLikes: string[], count: number) => {
 export const fetchPokemonMove = (name: string, url: string) => {
     return async (dispatch: Dispatch<PokemonsAction>) => {
         try {
-            dispatch({ type: PokemonsActionTypes.FETCH_DATA })
             await instance.get(url)
                 .then(response => dispatch({ type: PokemonsActionTypes.FETCH_MOVE, payload: { name: name, description: response.data.effect_entries[0].effect } }))
-            dispatch({ type: PokemonsActionTypes.FETCH_SUCCESS });
         } catch (e) {
             dispatch({ type: PokemonsActionTypes.FETCH_ERROR, payload: 'Произошла ошибка загрузка способностей покемона' });
         }
@@ -93,33 +66,10 @@ export const fetchPokemonMove = (name: string, url: string) => {
 export const fetchPokemonAbility = (name: string, url: string) => {
     return async (dispatch: Dispatch<PokemonsAction>) => {
         try {
-            dispatch({ type: PokemonsActionTypes.FETCH_DATA })
             await instance.get(url)
                 .then(response => dispatch({ type: PokemonsActionTypes.FETCH_ABILITY, payload: { name: name, description: response.data.effect_entries[1].effect } }))
-            dispatch({ type: PokemonsActionTypes.FETCH_SUCCESS });
         } catch (e) {
             dispatch({ type: PokemonsActionTypes.FETCH_ERROR, payload: 'Произошла ошибка загрузка способностей покемона' });
-        }
-    }
-}
-
-export const fetchPokemonsByType = (id: string, userLikes: string[]) => {
-    return async (dispatch: Dispatch<PokemonsAction>) => {
-        try {
-            dispatch({ type: PokemonsActionTypes.FETCH_DATA });
-            await instance.get(`https://pokeapi.co/api/v2/type/${id}`).then(
-                response => {
-                    response.data.pokemon.forEach(((pokemon: { slot: string, pokemon: { name: string, url: string } }) => {
-                        const isLikeValue = userLikes.includes(pokemon.pokemon.name);
-                        fetchPokemon(pokemon.pokemon.url, isLikeValue).then((data: IPokemon) => {
-                            dispatch({ type: PokemonsActionTypes.FETCH_POKEMON, payload: { name: pokemon.pokemon.name, property: data } });
-                        })
-                    }))
-                }
-            )
-            dispatch({ type: PokemonsActionTypes.FETCH_SUCCESS });
-        } catch (e) {
-            dispatch({ type: PokemonsActionTypes.FETCH_ERROR, payload: 'Произошла ошибка загрузки покемонов' });
         }
     }
 }

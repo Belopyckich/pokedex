@@ -1,37 +1,30 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import PokemonBlock from "../../components/PokemonBlock/PokemonBlock";
 import Pagination from "../../components/UI/Pagination/Pagination";
-import { AuthContext } from "../../context/AuthContext";
 import { SearchContext } from "../../context/SearchContext";
-import { useAction } from "../../hooks/useAction";
 import { RootState } from "../../redux/reducers";
-import { IPokemonType, PokemonsActionTypes } from "../../types/pokemons";
+import { IPokemonType} from "../../types/pokemons";
 import style from "./PokemonsByTypePage.module.css";
 
 const PokemonsByTypePage: React.FC = () => {
   const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
   const types = useSelector((state: RootState) => state.pokemons.types);
 
-  const { id } = useParams<{ id: string }>();
+  const history = useHistory();
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const { type, page } = useParams<{ type: string, page: string }>();
+
   const [pageCount, setPageCount] = useState<number>(1);
 
-  const {userLikes} = useContext(AuthContext);
-  const {limit, setIsLimitActive, setIsSearchBarActive} = useContext(SearchContext);
+  const {limit, setIsLimitActive, setIsSearchBarActive, searchBy} = useContext(SearchContext);
 
-  const currentType = types.find(
-    (type: IPokemonType) => type.id.toString() === id
-  );
-
-  const { fetchPokemonsByType } = useAction();
+  const currentType = types.find((currentType: IPokemonType) => currentType.name === type);
 
   useEffect(() => {
     setIsLimitActive(true);
     setIsSearchBarActive(false);
-    fetchPokemonsByType(id, userLikes);
     if (currentType) {
       setPageCount(Math.ceil(currentType?.count / limit));
     }
@@ -46,14 +39,15 @@ const PokemonsByTypePage: React.FC = () => {
               <PokemonBlock
                 pokemon={pokemons[pokemon]}
                 key={`${pokemons[pokemon]?.id}${currentType}` ?? `${index}${currentType}`}
+                onClick = {() => history.push(`${searchBy}/${currentType.name}/${page}/${pokemons[pokemon].name}`)}
               />
             ) : (
               <div></div>
             )
           )
-          .slice((currentPage - 1) * limit, currentPage * limit)}
+          .slice((Number(page) - 1) * limit, Number(page) * limit)}
       </div>
-      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pageCount={pageCount}/>
+      <Pagination pageCount={pageCount}/>
     </div>
   );
 };

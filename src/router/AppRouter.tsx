@@ -2,10 +2,12 @@ import React from 'react';
 import { Switch, Route, Redirect} from 'react-router-dom';
 import { privateRoutes, publicRoutes } from './routs';
 import {AuthContext} from '../context/AuthContext';
+import { SearchContext } from '../context/SearchContext';
 
 const AppRouter: React.FC = () => {
     const {isAuth} = React.useContext(AuthContext);
 
+    const {searchBy} = React.useContext(SearchContext);
 
     return (
         isAuth ?
@@ -19,7 +21,7 @@ const AppRouter: React.FC = () => {
                     exact={route.exact}
                 />
             )}
-            <Redirect to="/pokemons"/>
+            <Redirect to={`/${searchBy}/1`}/>
         </Switch>
 
         :

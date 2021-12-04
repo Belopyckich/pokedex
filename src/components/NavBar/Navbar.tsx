@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import React, { ChangeEvent, useCallback, useContext, useEffect, useState } from "react";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { SearchContext } from "../../context/SearchContext";
 import MySelect from "../UI/MySelect/MySelect";
@@ -8,18 +8,20 @@ import style from "./Navbar.module.css";
 const Navbar = () => {
   const [name, setName] = useState<string | null>("");
 
+  let {page} = useParams<{searchBy: string, page: string}>();
+
   const { setIsAuth } = useContext(AuthContext);
   const {
     search,
     setSearch,
     limit,
     setLimit,
-    currentPage,
-    setCurrentPage,
     selectedSort,
     setSelectedSort,
     isSearchBarActive,
-    isLimitActive
+    isLimitActive,
+    searchBy,
+    setSearchBy,
   } = useContext(SearchContext);
 
   const history = useHistory();
@@ -39,10 +41,7 @@ const Navbar = () => {
       <div className={style.navbarLinks}>
         <NavLink
           to="/pokemons"
-          onClick={() => {
-            setSearch("");
-            setCurrentPage("pokemons");
-          }}
+          onClick={() => setSearch("")}
           className={style.userText}
         >
           {name} POKEDEX
@@ -57,9 +56,9 @@ const Navbar = () => {
               value={limit}
               onChange={setLimit}
               options={[
-                { value: 20, name: "20" },
-                { value: 30, name: "30" },
-                { value: 50, name: "50" },
+                { value: '20', name: "20" },
+                { value: '30', name: "30" },
+                { value: '50', name: "50" },
               ]}
             />
             </div>
@@ -70,11 +69,11 @@ const Navbar = () => {
             <div style={{ color: "white" }}>SEARCH BY:</div>
             <MySelect
               isPageChanger={true}
-              value={currentPage}
-              onChange={setCurrentPage}
+              value={searchBy}
+              onChange={setSearchBy}
               options={[
-                { value: "pokemons", name: "POKEMONS" },
-                { value: "type", name: "TYPES" },
+                { value: "/pokemons/1", name: "POKEMONS" },
+                { value: "/types", name: "TYPES" },
               ]}
             />
           </div>

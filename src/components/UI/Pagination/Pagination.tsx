@@ -1,54 +1,57 @@
-import React, {FC} from 'react';
+import React, {FC, useContext, useEffect} from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import { SearchContext } from '../../../context/SearchContext';
 import style from "./Pagination.module.css";
 
 interface PaginationProps {
-    currentPage: number,
-    setCurrentPage: any,
     pageCount: number
 }
 
-const Pagination: FC<PaginationProps> = ({currentPage, setCurrentPage, pageCount}) => {
+const Pagination: FC<PaginationProps> = ({pageCount}) => {
+  const {page} = useParams<{page: string}>()
+  const {searchBy} = useContext(SearchContext); 
+  const history = useHistory();
+
     return (
         <div className={style.pagesWrapper}>
         <div className={style.pagesContainer}>
           <button
             className={
-              currentPage === 1
+              Number(page) === 1
                 ? `${style.arrowDisable} ${style.pushLeftArrow}`
                 : style.pushLeftArrow
             }
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(currentPage + 1)}
-          />
+            disabled={Number(page) === 1}
+            onClick={() => history.push(`/${searchBy}/1`)}          />
           <button
             className={
-              currentPage === 1
+              Number(page) === 1
                 ? `${style.arrowDisable} ${style.leftArrow}`
                 : style.leftArrow
             }
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(currentPage - 1)}
+            disabled={Number(page) === 1}
+            onClick={() => history.push(`/${searchBy}/${Number(page) - 1}`)}
           />
           <div className={style.pageNavigation}>
-            <div className={style.pageNavigation__text}>{currentPage}/{pageCount}</div>
+            <div className={style.pageNavigation__text}>{page}/{pageCount}</div>
           </div>
           <button
             className={
-              currentPage === pageCount
+              Number(page) === pageCount
                 ? `${style.arrowDisable} ${style.rightArrow}`
                 : style.rightArrow
             }
-            disabled={currentPage === pageCount}
-            onClick={() => setCurrentPage(currentPage + 1)}
+            disabled={Number(page) === pageCount}
+            onClick={() => history.push(`/${searchBy}/${Number(page) + 1}`)}
           />
           <button
             className={
-              currentPage === pageCount
+              Number(page) === pageCount
                 ? `${style.arrowDisable} ${style.pushRightArrow}`
                 : style.pushRightArrow
             }
-            disabled={currentPage === pageCount}
-            onClick={() => setCurrentPage(pageCount)}
+            disabled={Number(page) === pageCount}
+            onClick={() => history.push(`/${searchBy}/${pageCount}`)}
           />
         </div>
       </div>

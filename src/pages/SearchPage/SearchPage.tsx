@@ -13,14 +13,17 @@ import Loading from "../../components/UI/Loading/Loading";
 import { IPokemon, PokemonsActionTypes } from "../../types/pokemons";
 import {throttle, debounce} from "lodash";
 import { getPokemonsBySelectedSort } from "../../utils/getPokemonsBySelectedSort";
+import { useHistory, useParams } from "react-router-dom";
 
-const SearchPage = () => {
+const SearchPage : React.FC = () => {
   const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
   const loading = useSelector((state: RootState) => state.pokemons.loading);
-  const pokemonsCount = useSelector((state: RootState) => state.pokemons.pokemonsCount);
 
-  const [searchCurrentPage, setSearchCurrentPage] = useState(1);
-  const [searchPageCount, setSearchPageCount] = useState<number>(1);
+  const {searchBy, page} = useParams<{searchBy: string, page: string}>();
+
+  const history = useHistory();
+
+  const [pageCount, setPageCount] = useState<number>(1);
   const [isPageEmpty, setIsPageEmpty] = useState<boolean>(false);
   const [currentPokemons, setCurrentPokemons] = useState<IPokemon[]>([]);
 
@@ -33,36 +36,23 @@ const SearchPage = () => {
     selectedSort,
   } = useContext(SearchContext);
 
-  const { fetchPokemons, fetchPokemonsCount } = useAction();
+  const { fetchPokemons} = useAction();
 
   useEffect(() => {
-    fetchPokemonsCount();
+    fetchPokemons(userLikes);
     setIsLimitActive(true);
     setIsSearchBarActive(true);
   }, []);
 
   useEffect(() => {
-    fetchPokemons(userLikes, pokemonsCount);
-  }, [pokemonsCount])
-
-  useEffect(() => {
-    setSearchCurrentPage(1);
-    debouncedPokemons();
-  }, [loading, selectedSort, search, limit] )
-
-  const debouncedPokemons = debounce(async() => {
-      const {sortedPokemons, sortedPokemonsCount} = getPokemonsBySelectedSort(
+    const {sortedPokemons, sortedPokemonsCount} = getPokemonsBySelectedSort(
       Object.values(pokemons).filter(pokemon => pokemon.name.toLowerCase().includes(search.toLowerCase())),
       selectedSort
     )
     setCurrentPokemons(sortedPokemons);
     sortedPokemonsCount > 0 ? setIsPageEmpty(false) : setIsPageEmpty(true);
-    setSearchPageCount(Math.ceil(sortedPokemonsCount / limit));
-  }, 1000)
-
-
-
-
+    setPageCount(Math.ceil(sortedPokemonsCount / limit));
+  }, [loading, selectedSort, search, limit, pokemons] )
 
   if (loading) {
     return (
@@ -83,12 +73,8 @@ const SearchPage = () => {
             />
             <div className={style.errorMessage}>NO POKEMON MATCHED YOUR SEARCH</div>
           </div>
-          {searchPageCount > 1 ? (
-          <Pagination
-            currentPage={searchCurrentPage}
-            setCurrentPage={setSearchCurrentPage}
-            pageCount={searchPageCount}
-          />
+          {pageCount > 1 ? (
+          <Pagination pageCount={pageCount}/>
           ) : (
           <Footer />
           )}
@@ -99,19 +85,19 @@ const SearchPage = () => {
       <div className={style.search}>
           <div className={style.searchWrapper}>
             {currentPokemons.map((pokemon: IPokemon) => (
-                <PokemonBlock pokemon={pokemon} key={pokemon.id}></PokemonBlock>
+                <PokemonBlock 
+                  pokemon={pokemon} 
+                  key={pokemon.id}
+                  onClick = {() => history.push(`${searchBy}/${page}/${pokemon.name}`)}
+                />
               ))
               .slice(
-                (searchCurrentPage - 1) * limit,
-                searchCurrentPage * limit
+                (Number(page) - 1) * limit,
+                Number(page) * limit
               )}
           </div>
-        {searchPageCount > 1 ? (
-          <Pagination
-            currentPage={searchCurrentPage}
-            setCurrentPage={setSearchCurrentPage}
-            pageCount={searchPageCount}
-          />
+        {pageCount > 1 ? (
+          <Pagination pageCount={pageCount}/>
         ) : (
           <Footer />
         )}

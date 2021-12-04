@@ -8,15 +8,15 @@ export interface SearchContextInterface {
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
   limit: number;
-  setLimit: any;
-  currentPage: string;
-  setCurrentPage: any;
+  setLimit: React.Dispatch<React.SetStateAction<number>>;
+  searchBy: string;
+  setSearchBy: React.Dispatch<React.SetStateAction<string>>;
   selectedSort: string;
-  setSelectedSort: any;
+  setSelectedSort: React.Dispatch<React.SetStateAction<string>>;
   isSearchBarActive: boolean;
-  setIsSearchBarActive: any;
+  setIsSearchBarActive: React.Dispatch<React.SetStateAction<boolean>>;
   isLimitActive: boolean;
-  setIsLimitActive: any;
+  setIsLimitActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const SearchContext = createContext<SearchContextInterface>(
@@ -26,7 +26,7 @@ export const SearchContext = createContext<SearchContextInterface>(
 export const SearchContextComponent: FC<SearchContextProps> = ({
   children,
 }) => {
-  const [currentPage, setCurrentPage] = useState<string>("pokemons");
+  const [searchBy, setSearchBy] = useState<string>("pokemons");
   const [search, setSearch] = useState<string>("");
   const [limit, setLimit] = useState<number>(20);
   const [selectedSort, setSelectedSort] = useState<string>("alphabet");
@@ -40,8 +40,8 @@ export const SearchContextComponent: FC<SearchContextProps> = ({
         setSearch,
         limit,
         setLimit,
-        currentPage,
-        setCurrentPage,
+        searchBy,
+        setSearchBy,
         selectedSort,
         setSelectedSort,
         isSearchBarActive,

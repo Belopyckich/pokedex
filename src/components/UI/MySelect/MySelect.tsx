@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import style from "./MySelect.module.css";
 
 interface MySelectProps {
@@ -11,14 +11,14 @@ interface MySelectProps {
 
 const MySelect : FC<MySelectProps> = ({value, onChange, options, isPageChanger}) => {
     const history = useHistory();
-    
+
     return (
         <select
             value={value}
             onChange={(event : React.ChangeEvent<HTMLSelectElement>) => {
                 onChange(event.target.value)
                 if (isPageChanger) {
-                    history.push(`/${event.target.value}`);
+                    history.push(`${event.target.value}`);
                 }
             }}
             className={style.mySelect}

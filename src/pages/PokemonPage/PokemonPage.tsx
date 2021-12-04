@@ -13,11 +13,10 @@ const PokemonPage: React.FC = () => {
   const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
   const abilities = useSelector((state: RootState) => state.pokemons.abilities);
 
-  const { pokemon } = useParams<{ pokemon: string; id: string }>();
+  const { pokemon } = useParams<{ pokemon: string }>();
 
   const {setIsLimitActive, setIsSearchBarActive} = useContext(SearchContext);
    
-
   const { fetchPokemonAbility } = useAction();
 
   useEffect(() => {

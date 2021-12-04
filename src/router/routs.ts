@@ -4,12 +4,11 @@ import PokemonsByTypePage from "../pages/PokemonsByTypePage/PokemonsByTypePage";
 import SearchPage from "../pages/SearchPage/SearchPage";
 import PokemonTypes from "../pages/TypesPage/TypesPage";
 
-
 export const privateRoutes = [
-    {name: 'type', component: PokemonTypes, path: '/type', exact: true},
-    {name: 'pokemonsByType', component: PokemonsByTypePage, path: '/type/:id', exact: true},
-    {name: 'pokemon', component: PokemonPage, path: '/pokemons/:pokemon', exact: true},
-    {name: 'pokemons', component: SearchPage, path: '/pokemons', exact: true},
+    {name: 'types', component: PokemonTypes, path: '/types', exact: true},
+    {name: 'pokemonsByType', component: PokemonsByTypePage, path: '/types/:type/:page', exact: true},
+    {name: 'pokemon', component: PokemonPage, path: ['/types/:type/:page/:pokemon', '/pokemons/:page/:pokemon'], exact: true},
+    {name: 'pokemons', component: SearchPage, path: '/pokemons/:page', exact: true},
 ]
 
 export const publicRoutes = [
