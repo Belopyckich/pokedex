@@ -15,9 +15,12 @@ export const getPokemonsBySelectedSort = (sortedPokemons : IPokemon[], selectedS
   
         case "weight":
         case "height":
-        case "id":
             return {sortedPokemons: sortedPokemons.sort((a: IPokemon, b: IPokemon) => Number(b[selectedSort]) - Number(a[selectedSort])),
-                    sortedPokemonsCount: sortedPokemons.sort((a: IPokemon, b: IPokemon) => Number(b[selectedSort]) - Number(a[selectedSort])).length
+                sortedPokemonsCount: sortedPokemons.sort((a: IPokemon, b: IPokemon) => Number(b[selectedSort]) - Number(a[selectedSort])).length
+            }
+        case "id":
+            return {sortedPokemons: sortedPokemons.sort((a: IPokemon, b: IPokemon) => Number(a[selectedSort]) - Number(b[selectedSort])),
+                    sortedPokemonsCount: sortedPokemons.sort((a: IPokemon, b: IPokemon) => Number(a[selectedSort]) - Number(b[selectedSort])).length
             }
   
         case "hp":
@@ -25,8 +28,8 @@ export const getPokemonsBySelectedSort = (sortedPokemons : IPokemon[], selectedS
         case "defense":
         case "speed":
             return {sortedPokemons: sortedPokemons.sort((a: IPokemon, b: IPokemon) => +b.stats[selectedSort] - +a.stats[selectedSort]),
-                    sortedPokemonsCount: sortedPokemons.sort((a: IPokemon, b: IPokemon) => +b.stats[selectedSort] - +a.stats[selectedSort]).length}
-  
+                    sortedPokemonsCount: sortedPokemons.sort((a: IPokemon, b: IPokemon) => +b.stats[selectedSort] - +a.stats[selectedSort]).length
+            }
         default:
           return {sortedPokemons: sortedPokemons, sortedPokemonsCount: sortedPokemons.length}
     }

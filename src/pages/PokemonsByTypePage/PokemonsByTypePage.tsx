@@ -39,7 +39,7 @@ const PokemonsByTypePage: React.FC = () => {
               <PokemonBlock
                 pokemon={pokemons[pokemon]}
                 key={`${pokemons[pokemon]?.id}${currentType}` ?? `${index}${currentType}`}
-                onClick = {() => history.push(`${searchBy}/${currentType.name}/${page}/${pokemons[pokemon].name}`)}
+                onClick = {() => history.push(`/types/${currentType.name}/${page}/${pokemons[pokemon].name}`)}
               />
             ) : (
               <div></div>

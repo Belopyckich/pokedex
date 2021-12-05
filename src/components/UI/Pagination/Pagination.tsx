@@ -8,8 +8,7 @@ interface PaginationProps {
 }
 
 const Pagination: FC<PaginationProps> = ({pageCount}) => {
-  const {page} = useParams<{page: string}>()
-  const {searchBy} = useContext(SearchContext); 
+  const {page, type} = useParams<{page: string, type: string}>()
   const history = useHistory();
 
     return (
@@ -22,7 +21,7 @@ const Pagination: FC<PaginationProps> = ({pageCount}) => {
                 : style.pushLeftArrow
             }
             disabled={Number(page) === 1}
-            onClick={() => history.push(`/${searchBy}/1`)}          />
+            onClick={() => history.location.pathname.includes('types') ? history.push(`/types/${type}/1`) : history.push('/pokemons/1') }/>
           <button
             className={
               Number(page) === 1
@@ -30,7 +29,7 @@ const Pagination: FC<PaginationProps> = ({pageCount}) => {
                 : style.leftArrow
             }
             disabled={Number(page) === 1}
-            onClick={() => history.push(`/${searchBy}/${Number(page) - 1}`)}
+            onClick={() => history.location.pathname.includes('types') ? history.push(`/types/${type}/${Number(page) - 1}`) : history.push(`/pokemons/${Number(page) - 1}`)}
           />
           <div className={style.pageNavigation}>
             <div className={style.pageNavigation__text}>{page}/{pageCount}</div>
@@ -42,7 +41,7 @@ const Pagination: FC<PaginationProps> = ({pageCount}) => {
                 : style.rightArrow
             }
             disabled={Number(page) === pageCount}
-            onClick={() => history.push(`/${searchBy}/${Number(page) + 1}`)}
+            onClick={() => history.location.pathname.includes('types') ? history.push(`/types/${type}/${Number(page) + 1}`) : history.push(`/pokemons/${Number(page) + 1}`)}
           />
           <button
             className={
@@ -51,7 +50,7 @@ const Pagination: FC<PaginationProps> = ({pageCount}) => {
                 : style.pushRightArrow
             }
             disabled={Number(page) === pageCount}
-            onClick={() => history.push(`/${searchBy}/${pageCount}`)}
+            onClick={() => history.location.pathname.includes('types') ? history.push(`/types/${type}/${pageCount}`) : history.push(`/pokemons/${pageCount}`)}
           />
         </div>
       </div>

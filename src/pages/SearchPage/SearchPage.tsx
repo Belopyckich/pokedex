@@ -88,7 +88,7 @@ const SearchPage : React.FC = () => {
                 <PokemonBlock 
                   pokemon={pokemon} 
                   key={pokemon.id}
-                  onClick = {() => history.push(`${searchBy}/${page}/${pokemon.name}`)}
+                  onClick = {() => history.push(`/pokemons/${page}/${pokemon.name}`)}
                 />
               ))
               .slice(
