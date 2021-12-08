@@ -8,16 +8,18 @@
     justify-content: center;
     align-items: center;
 }
-.leftPokedox {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-}
+
 .rightPokedox {
     position: absolute;
     top: 0;
     right: 0;
+    height: 100vh;
+}
+
+.leftPokedox {
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 100vh;
 }
 .pokedex {
@@ -38,4 +40,49 @@
         transform: rotate(360deg)
     }
 
+}
+
+@media (max-width: 1200px) {
+    .rightPokedox {
+        right: -20%;
+    }
+    
+    .leftPokedox {
+        left: -20%;
+    }
+}
+
+@media (max-width: 768px) {
+    .rightPokedox {
+        right: -40%;
+    }
+    
+    .leftPokedox {
+        left: -40%;
+    }
+}
+
+@media (max-width: 576px) {
+    .rightPokedox {
+        right: -60%;
+    }
+    
+    .leftPokedox {
+        left: -60%;
+    }
+    .pokedex {
+        width: 180px;
+    }
+}
+@media (max-width: 470px) {
+    .rightPokedox {
+        display: none;
+    }
+    
+    .leftPokedox {
+        display: none;
+    }
+    .pokedex {
+        width: 180px;
+    }
 }

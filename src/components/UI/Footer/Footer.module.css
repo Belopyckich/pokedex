@@ -1,8 +1,9 @@
 .myFooter {
+    font-weight: 500;
     padding: 20px;
     display: flex;
     height: 25vh;
-    gap: 50px;
+    gap: 25px;
     background-color: #4991a7;
     border-top: 3px solid white;
     color: white;
@@ -13,7 +14,7 @@
     content: '';
     width: 200px;
     position:absolute;
-    top: 51%;
+    bottom: 0;
     left: 0;
 }
 .myWiggly {
@@ -21,7 +22,7 @@
     height: 90%;
     overflow: hidden;
     position:absolute;
-    top: 10%;
+    bottom: 0;
     right: 0;
 }
 .myFooter__header {
@@ -32,11 +33,10 @@
 }
 .myFooter__wrapper {
     display: flex;
-    gap: 20px;
+    gap: 100px;
     justify-content: center;
 }
 .myFooter__component {
-    width: 20%;
     gap: 22px;
     display: flex;
     flex-direction: column;
@@ -45,6 +45,7 @@
     text-align: center;
 }
 .component__wrapper {
+    gap: 10px;
     display: flex;
     justify-content: space-between;
 }
@@ -67,4 +68,72 @@
     width: 240px;
     height: 100%;
     margin: 0 auto;
+}
+
+@media (max-width: 1000px) {
+    .myWiggly {
+        height: 160px;
+        width: 160px;
+    }
+    .myPikachu {
+        width: 160px;
+    }
+    .component__icon {
+        width: 50px;
+        height: 50px;
+    }
+    .component__pokeapi__icon {
+        width: 160px;
+    }
+    .myFooter__header {
+        font-size: 28px;
+    }
+    .component__header, .component__description {
+        font-size: 21px;
+    }
+}
+@media (max-width: 768px) {
+    .myWiggly {
+        height: 120px;
+        width: 120px;
+    }
+    .myPikachu {
+        width: 120px;
+    }
+    .component__icon {
+        width: 50px;
+        height: 50px;
+    }
+    .component__pokeapi__icon {
+        width: 120px;
+        height: 50%;
+    }
+    .myFooter__header {
+        font-size: 22px;
+    }
+    .component__header, .component__description {
+        font-size: 17px;
+    }
+    .myFooter__wrapper {
+        gap: 50px;
+    }
+}
+@media (max-width: 576px) {
+    .ability_description {
+        font-size: 22px;
+    }
+    .propertyIcon {
+        width: 40px;
+        height: 40px;
+    }
+    .myWiggly {
+        display: none;
+    }
+    .myPikachu {
+        display: none;
+    }
+    
+    .myFooter__wrapper {
+        gap: 10px;
+    }
 }

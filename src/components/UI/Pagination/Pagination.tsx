@@ -1,6 +1,5 @@
-import React, {FC, useContext, useEffect} from 'react';
+import React, {FC} from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { SearchContext } from '../../../context/SearchContext';
 import style from "./Pagination.module.css";
 
 interface PaginationProps {
@@ -12,7 +11,7 @@ const Pagination: FC<PaginationProps> = ({pageCount}) => {
   const history = useHistory();
 
     return (
-        <div className={style.pagesWrapper}>
+      <div className={style.pagesWrapper}>
         <div className={style.pagesContainer}>
           <button
             className={

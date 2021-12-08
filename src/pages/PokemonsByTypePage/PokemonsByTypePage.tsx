@@ -7,6 +7,8 @@ import { SearchContext } from "../../context/SearchContext";
 import { RootState } from "../../redux/reducers";
 import { IPokemonType} from "../../types/pokemons";
 import style from "./PokemonsByTypePage.module.css";
+import { useSwipeable } from 'react-swipeable';
+
 
 const PokemonsByTypePage: React.FC = () => {
   const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
@@ -20,6 +22,11 @@ const PokemonsByTypePage: React.FC = () => {
 
   const {limit, setIsLimitActive, setIsSearchBarActive, searchBy} = useContext(SearchContext);
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => Number(page) !== pageCount ? history.push(`/types/${type}/${Number(page) + 1}`) : 0,
+    onSwipedRight: () => Number(page) !== 1 ? history.push(`/types/${type}/${Number(page) - 1}`) : 0,
+  })
+
   const currentType = types.find((currentType: IPokemonType) => currentType.name === type);
 
   useEffect(() => {
@@ -31,7 +38,7 @@ const PokemonsByTypePage: React.FC = () => {
   }, [limit]);
 
   return (
-    <div className={style.pokemonsByType}>
+    <div className={style.pokemonsByType} {...handlers}>
       <div className={style.pokemonsWrapper}>
         {currentType?.pokemons
           .map((pokemon, index) =>

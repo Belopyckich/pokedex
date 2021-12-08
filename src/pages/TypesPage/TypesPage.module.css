@@ -20,3 +20,18 @@
     cursor: pointer;
     width: 170px;
 }
+
+@media (max-width: 768px) {
+    .pokemonTypeIcon {
+        width: 120px;
+    }
+}
+
+@media (max-width: 576px) {
+    .pokemonTypeIcon {
+        width: 70px;
+    }
+    .pokemonTypeText {
+        font-size: 22px;
+    }
+}

@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { SearchContext } from '../../../context/SearchContext';
 import style from "./MySelect.module.css";
 
 interface MySelectProps {
@@ -12,6 +13,8 @@ interface MySelectProps {
 const MySelect : FC<MySelectProps> = ({value, onChange, options, isPageChanger}) => {
     const history = useHistory();
 
+    const {setSearch} = useContext(SearchContext);
+
     return (
         <select
             value={value}
@@ -19,6 +22,9 @@ const MySelect : FC<MySelectProps> = ({value, onChange, options, isPageChanger})
                 onChange(event.target.value)
                 if (isPageChanger) {
                     history.push(`${event.target.value}`);
+                } else {
+                    setSearch('');
+                    history.push(`/pokemons/1`)
                 }
             }}
             className={style.mySelect}

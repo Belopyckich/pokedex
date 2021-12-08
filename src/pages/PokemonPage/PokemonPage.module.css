@@ -8,15 +8,17 @@
     background-color: #75cae4;
 }
 .info {
-    margin: 13vh 0;
+    margin: 120px 0 5vh;
     height: 100%;
     padding: 0 20px;
     display: grid;
+    justify-content: center;
     grid-template: 10% 90% / 30% 40% 30%;
     align-items: center;
     justify-items: center;
 }
 .stats {
+    padding: 20px;
     width: 100%;
     display: flex;
     font-size: 40px;
@@ -60,10 +62,10 @@
 .abilities {
     background-color: #4991a7;
     border-top: solid 3px white;
-    border-bottom: solid 3px white;
 }
 
 .properties {
+    padding: 20px;
     width: 100%;
     display: flex;
     font-size: 40px;
@@ -89,6 +91,11 @@
 .propertyTypes {
     display: flex;
     justify-content: space-around;
+}
+.propertyTypeText {
+    font-size: 45px;
+    text-align: center;
+    padding-bottom: 20px;
 }
 .abilities {
     padding: 40px;
@@ -119,4 +126,77 @@
 .ability_description {
     text-align: center;
     padding:10px;
+}
+
+@media (max-width: 1000px) {
+    .stat_name, .stat_value, .propertyText, .ability_description {
+        font-size: 30px;
+    }
+    .propertyIcon {
+        width: 50px;
+        height: 50px;
+    }
+    .propertyTypeText, .ability_header {
+        font-size: 35px;
+    }
+    .abilities {
+        padding: 40px 20px;
+    }
+    .abilities::before, .header {
+        font-size: 40px
+    }
+}
+@media (max-width: 768px) {
+    .stat_name, .stat_value, .propertyText, .ability_description {
+        font-size: 25px;
+    }
+    .stats {
+        padding: 10px;
+    }
+    .info {
+        grid-template: 5% 50% 45% / 50% 50%;
+    }
+    .header {
+        grid-area: 1/ 1/ span 1/span 2;
+    }
+    .img {
+        grid-area: 2/ 1/ span 1/span 2;
+        width: 90%;
+        height: 90%;
+    }
+}
+@media (max-width: 576px) {
+    .stats {
+        padding: 10px 30px;
+        grid-area: 4 / 1;
+    }
+    .properties {
+        grid-area: 3 / 1;
+    }
+    .info {
+        grid-template: repeat(4, auto)/ 100%;
+    }
+    .img {
+        grid-area: 2/ 1/ span 1;
+    }
+    .properties {
+        gap: 20px;
+    }
+    .abilities {
+        margin-top: 20px;
+        flex-direction: column;
+    }
+    .ability {
+        width: 100%;
+    }
+    .propertyIcon {
+        width: 40px;
+        height: 40px;
+    }
+    .propertyTypeText, .ability_header {
+        font-size: 30px;
+    }
+    .abilities::before, .header {
+        font-size: 35px
+    }
 }

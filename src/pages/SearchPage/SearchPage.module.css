@@ -5,7 +5,7 @@
 }
 .searchWrapper, .errorWrapper {
     min-height: 75vh;
-    padding-top: 10vh;
+    padding: 100px 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -17,4 +17,15 @@
 .search {
     min-height: 100vh;
     background-color: #75cae4;
+}
+
+@media (max-width: 768px) {
+    .errorMessage {
+        padding: 10px;
+        text-align: center;
+        font-size: 20px;
+    }
+    .errorImage {
+        height: 150px;
+    }
 }

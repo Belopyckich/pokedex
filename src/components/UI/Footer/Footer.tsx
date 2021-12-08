@@ -19,15 +19,15 @@ const Footer : React.FC = () => {
                     <div className={style.component__wrapper}>
                         <div className={style.component__icon__wrapper}>
                             <img className={style.component__icon} src={reactIcon} alt="react"></img>
-                            <div>REACT</div>
+                            <div className={style.component__description}>REACT</div>
                         </div>
                         <div className={style.component__icon__wrapper}>
                             <img className={style.component__icon} src={reduxIcon} alt="redux"></img>
-                            <div>REDUX</div>
+                            <div className={style.component__description}>REDUX</div>
                         </div>
                         <div className={style.component__icon__wrapper}>
                             <img className={style.component__icon} src={axiosIcon} alt="axios"></img>
-                            <div>AXIOS</div>
+                            <div className={style.component__description}>AXIOS</div>
                         </div>
                     </div>
                 </div>

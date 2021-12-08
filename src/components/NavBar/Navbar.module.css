@@ -1,76 +1,53 @@
 .hamburger {
-    z-index: 10;
-    display: block;
-    position: absolute;
-    top: 40px;
-    right: 62px;
-}
-.hamburger__rectangle {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 112px;
-    height: 96px;
-    padding: 29px 23px;
-    border: 3px solid #fff;
     cursor: pointer;
-}
-.hamburger__rectangle span {
-    display: block;
-    width: 60px;
-    height: 5px;
-    background: #fff;
+    z-index: 10;
+    position: absolute;
+    margin-top: 20px;
+    right: 30px;
 }
 .navbar {
     background-color: #4991a7;
     position: fixed;
     z-index: 2;
-    height: 10vh;
+    height: 100px;
     width: 100%;
     border-bottom: 3px solid;
     border-color: white;
 }
 .navbarWrapper {
-    padding-top: 1vh;
+    padding: 0 20px;
     gap: 2vw;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     align-items: center;
-    height: 10vh;
+    height: 100px;
 }
 .navbarWrapper::before {
     content: '';
-    content: '';
     position: absolute;
+    margin-top: 10px;
     width: 100%;
     height: 90%;
     left: 0;
     background: url("../../images/NavBar/navbarLine.svg") no-repeat;
 }
 .userText {
+    position: absolute;
     list-style: none;
     text-decoration: none;
     color: white;
     font-weight: 500;
-    margin: 1vh 4vw 0;
+    top: 35%;
+    left: 2%;
+    width: 22vw;
+    text-align: start;
     font-size: 30px;
 }
 
-.back {
+.back, .exit {
     cursor: pointer;
-    border: none;
-    background: url('../../images/NavBar/leftArrow.svg');
-    width: 44px;
-    height: 44px;
-}
-
-.exit {
-    cursor: pointer;
-    border: none;
-    background: url('../../images/NavBar/exit1.svg');
-    width: 38px;
-    height: 38px;
+    height: 40px;
 }
 
 .input {
@@ -98,29 +75,71 @@
     margin-left: 13vw;
 }
 
-@media (max-width: 1200px) {
-    .userText {
-        margin: 0;
+.mobileNavigation {
+    display: none;
+}
+@media (max-width: 1300px) {
+    .navbarWrapper {
+        gap: 3vw;
+    }
+    input {
+        width: 15vw;
     }
     .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 320px;
-        height: 100vh;
-        transition: all .6s;
-        border-right: 3px solid white;
+        height: 100px;
+    }
+    .userText {
+        top: 20%;
+    }
+    .selectWrapper {
         flex-direction: column;
-        border-bottom: none;
-        padding: 20px;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 850px) {
+
+    .exit {
+        display: none;
+        margin-top: 27px;
+        right: 35%;
+    }
+    
+    .back {
+        display: none;
+        margin-top: 27px;
+        right: 21%;
+    }
+    .mobileNavigation {
+        display:flex;
+    }
+    .navigation {
+        display: none;
+    }
+    .userText {
+        top: 20px;
     }
     .navbarWrapper {
+        background-color: #4991a7;
+        position: fixed;
+        top: 100px;
+        right: 0;
+        width: 100%;
+        height: auto;
+        transition: all .6s;
+        border-bottom: 3px solid white;
+        gap: 20px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: space-between;
-        height: auto;
-        margin-top: 100px;
+        justify-content: flex-start;
+        padding: 70px 30px;
+    }
+    .navbarWrapper::before {
+        margin-top: 0;
+        background: url("../../images/NavBar/midNavbarLine.svg") no-repeat;
+        top: 0;
     }
     .selectWrapper {
         flex-direction: column;
@@ -129,12 +148,27 @@
         width: auto;
     }
     .exit {
-        top: -17%;
         position: absolute;
     }
     .back {
         position: absolute;
-        top: -18%;
-        left: 35%;
+    }
+}
+
+@media (max-width: 576px) {
+    .hamburger {
+        height: 50px;
+    }
+    .userText {
+        top: 15%;
+        font-size: 25px;
+    }
+    .back {
+        height: 35px;
+        right: 30%
+    }
+    .exit {
+        height: 35px;
+        right: 45%;
     }
 }

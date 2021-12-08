@@ -8,6 +8,7 @@ import style from "./PokemonPage.module.css";
 import weightIcon from "../../images/PokemonPageImages/weight.svg";
 import heightIcon from "../../images/PokemonPageImages/height.svg";
 import { SearchContext } from "../../context/SearchContext";
+import Footer from "../../components/UI/Footer/Footer";
 
 const PokemonPage: React.FC = () => {
   const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
@@ -72,7 +73,6 @@ const PokemonPage: React.FC = () => {
             </div>
           </div>
         </div>
-        <div>
           <img
             className={style.img}
             src={
@@ -82,18 +82,17 @@ const PokemonPage: React.FC = () => {
             }
             alt={`${pokemons[pokemon].name}mainimg`}
           ></img>
-        </div>
         <div className={style.properties}>
           <div className={style.property}>
             <img className={style.propertyIcon} src={weightIcon} alt="weight" />
-            <div>{pokemons[pokemon].weight} kg</div>
+            <div className={style.propertyText}>{pokemons[pokemon].weight} kg</div>
           </div>
           <div className={style.property}>
             <img className={style.propertyIcon} src={heightIcon} alt="height" />
-            <div>{pokemons[pokemon].height} m</div>
+            <div className={style.propertyText}>{pokemons[pokemon].height} m</div>
           </div>
           <div className={style.propertyTypeWrapper}>
-            <div className={style.header}>Type</div>
+            <div className={style.propertyTypeText}>Type</div>
             <div className={style.propertyTypes}>
               {pokemons[pokemon].types.map((type) => (
                 <img
@@ -117,6 +116,7 @@ const PokemonPage: React.FC = () => {
           </div>
         ))}
       </div>
+      <Footer/>
     </div>
   );
 };
