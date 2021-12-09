@@ -1,6 +1,7 @@
 .myInput, .myInputError {
     border-radius: .5em;
     padding: 10px 5px;
+    width: 100%;
     border: 4px solid #2f6fb6;
     color: #2f6fb6;
     background-color: #ffcb05;
@@ -39,4 +40,14 @@
 .myInputImg {
     height: 50px;
     margin-right: 20px;
+}
+
+@media  (max-width: 650px) {
+    .myInputImg {
+        height: 40px;
+    }
+    .myInputWrapper {
+        flex-direction: column;
+        align-items:flex-start;
+    }
 }

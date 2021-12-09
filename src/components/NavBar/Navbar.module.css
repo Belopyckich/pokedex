@@ -2,7 +2,7 @@
     cursor: pointer;
     z-index: 10;
     position: absolute;
-    margin-top: 20px;
+    margin-top: 23px;
     right: 30px;
 }
 .navbar {
@@ -33,6 +33,7 @@
     background: url("../../images/NavBar/navbarLine.svg") no-repeat;
 }
 .userText {
+    z-index: 10;
     position: absolute;
     list-style: none;
     text-decoration: none;
@@ -102,13 +103,13 @@
 
     .exit {
         display: none;
-        margin-top: 27px;
+        margin-top: 30px;
         right: 35%;
     }
     
     .back {
         display: none;
-        margin-top: 27px;
+        margin-top: 30px;
         right: 21%;
     }
     .mobileNavigation {
@@ -118,7 +119,7 @@
         display: none;
     }
     .userText {
-        top: 20px;
+        top: 15px;
     }
     .navbarWrapper {
         background-color: #4991a7;
@@ -160,7 +161,7 @@
         height: 50px;
     }
     .userText {
-        top: 15%;
+        top: 20px;
         font-size: 25px;
     }
     .back {

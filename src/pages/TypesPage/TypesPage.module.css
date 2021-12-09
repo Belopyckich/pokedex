@@ -4,7 +4,8 @@
     background-color: #75cae4;
 }
 .pokemonTypesWrapper {
-    padding-top: 13vh;
+    min-height: 90vh;
+    padding-top: 120px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

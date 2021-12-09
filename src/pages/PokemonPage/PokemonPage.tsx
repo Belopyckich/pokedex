@@ -9,6 +9,7 @@ import weightIcon from "../../images/PokemonPageImages/weight.svg";
 import heightIcon from "../../images/PokemonPageImages/height.svg";
 import { SearchContext } from "../../context/SearchContext";
 import Footer from "../../components/UI/Footer/Footer";
+import { IPokemon } from "../../types/pokemons";
 
 const PokemonPage: React.FC = () => {
   const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
@@ -19,6 +20,18 @@ const PokemonPage: React.FC = () => {
   const {setIsLimitActive, setIsSearchBarActive} = useContext(SearchContext);
    
   const { fetchPokemonAbility } = useAction();
+
+  const choosingImage = (pokemon: IPokemon) => {
+    if (pokemon.sprites.main !== null) {
+      return pokemon.sprites.main;
+    } else if (pokemon.sprites.artwork !== null) {
+      return pokemon.sprites.artwork
+    } else if (pokemon.sprites.graphic !== null) {
+      return pokemon.sprites.graphic;
+    } else {
+      return pokemon.sprites.icon;
+    }
+  }
 
   useEffect(() => {
     setIsLimitActive(false);
@@ -75,11 +88,7 @@ const PokemonPage: React.FC = () => {
         </div>
           <img
             className={style.img}
-            src={
-              pokemons[pokemon].sprites.main
-                ? pokemons[pokemon].sprites.main
-                : pokemons[pokemon].sprites.graphic
-            }
+            src={choosingImage(pokemons[pokemon])}
             alt={`${pokemons[pokemon].name}mainimg`}
           ></img>
         <div className={style.properties}>

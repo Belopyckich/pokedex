@@ -21,9 +21,42 @@
     flex-direction: column;
     padding: 20px;
     width: 600px;
-    height: 482px;
+    height: 65%;
     border-radius: 20px;
 }
 .loginFormImg {
     margin-bottom: 90px;
+}
+
+@media (max-width: 1700px) {
+    .loginWrapper {
+        background: url("../../images/loginPageImages/minLoginBackground.png") no-repeat 100%/cover;
+    }
+    .loginForm {
+        background-color: #68c5e1;
+        border: 10px solid #3b5ca6;
+        right: 0;
+        width: 540px;
+    }
+    .loginFormImg {
+        margin-bottom: 10%;
+    }
+    
+}
+
+@media (max-width: 540px) {
+    .loginWrapper {
+        background: url("../../images/loginPageImages/telephoneBackground.jpg") no-repeat 100%/cover;
+    }
+    .loginFormImg {
+        margin-bottom: 15%;
+    }
+    .loginForm {
+        border: 5px solid #3b5ca6;
+        width: 90%;
+        justify-content: center;
+    }
+    .loginFormStyle {
+        gap: 20px
+    }
 }
