@@ -2,7 +2,7 @@
   "name": "pokemons",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://belopyckich.github.io/pokemons/react-app",
+  "homepage": "https://belopyckich.github.io/pokemons",
   "dependencies": {
     "@hookform/resolvers": "^2.8.3",
     "@testing-library/jest-dom": "^5.15.0",

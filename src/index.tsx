@@ -5,6 +5,7 @@ import {store} from "./redux/index";
 import {Provider} from "react-redux";
 import {AuthContextComponent} from "./context/AuthContext";
 import { SearchContextComponent } from './context/SearchContext';
+import "./index.css";
 
 ReactDOM.render(
   <Provider store={store}>

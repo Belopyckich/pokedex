@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'Pokemon';
-    src: url('../fonts/Ds Bios.woff2') format('woff2');
+    src: url('./fonts/DsBios.woff2') format('woff2');
     font-weight: 100;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'Pokemon';
-    src: url('../fonts/Flexo-Regular.woff2') format('woff2');
+    src: url('./fonts/FlexoRegular.woff2') format('woff2');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -15,7 +15,7 @@
 
 @font-face {
     font-family: 'Pokemon';
-    src: url('../fonts/Flexo-Bold.woff2') format('woff2');
+    src: url('./fonts/FlexoBold.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
