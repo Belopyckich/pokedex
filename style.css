@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Pokemon';
+    src: url('../fonts/Ds Bios.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pokemon';
+    src: url('../fonts/Flexo-Regular.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pokemon';
+    src: url('../fonts/Flexo-Bold.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    position: relative;
+    font-family: Pokemon;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
