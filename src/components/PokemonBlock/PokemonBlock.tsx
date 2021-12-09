@@ -25,8 +25,6 @@ const PokemonBlock: FC<PokemonProps> = ({pokemon, onClick}) => {
         }
     }
 
-    console.log(pokemon.sprites.artwork)
-
     useEffect(() => {
         localStorage.setItem("lovelyPokemons", JSON.stringify(userLikes));
     }, [userLikes])
