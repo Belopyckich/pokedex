@@ -1,10 +1,8 @@
 import React, {
   ChangeEvent,
   useContext,
-  useEffect,
-  useState,
 } from "react";
-import { NavLink, useHistory, useParams } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { SearchContext } from "../../context/SearchContext";
 import MySelect from "../UI/MySelect/MySelect";
@@ -35,6 +33,12 @@ const NavLinks : React.FC = () => {
     localStorage.removeItem("auth");
     localStorage.removeItem("user");
   };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    history.push("/pokemons/1");
+    setSearch(e.target.value);
+  }
+
   return (
     <div>
       <div className={style.navbarWrapper}>
@@ -42,10 +46,7 @@ const NavLinks : React.FC = () => {
           <input
             className={style.input}
             value={search}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              history.push("/pokemons/1");
-              setSearch(e.target.value);
-            }}
+            onChange={handleChange}
           />
         ) : (
           <div className={style.disabledSearchWrapper}></div>

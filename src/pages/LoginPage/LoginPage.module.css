@@ -19,13 +19,14 @@
     bottom: 0;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    justify-content: space-around;
+    padding: 50px;
     width: 600px;
-    height: 65%;
+    height: 500px;
     border-radius: 20px;
 }
 .loginFormImg {
-    margin-bottom: 90px;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 1700px) {
@@ -38,23 +39,15 @@
         right: 0;
         width: 540px;
     }
-    .loginFormImg {
-        margin-bottom: 10%;
-    }
-    
 }
 
 @media (max-width: 540px) {
     .loginWrapper {
         background: url("../../images/loginPageImages/telephoneBackground.jpg") no-repeat 100%/cover;
     }
-    .loginFormImg {
-        margin-bottom: 15%;
-    }
     .loginForm {
         border: 5px solid #3b5ca6;
         width: 90%;
-        justify-content: center;
     }
     .loginFormStyle {
         gap: 20px

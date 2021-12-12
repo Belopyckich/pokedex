@@ -20,7 +20,7 @@ const PokemonsByTypePage: React.FC = () => {
 
   const [pageCount, setPageCount] = useState<number>(1);
 
-  const {limit, setIsLimitActive, setIsSearchBarActive, searchBy} = useContext(SearchContext);
+  const {limit, setIsLimitActive, setIsSearchBarActive} = useContext(SearchContext);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => Number(page) !== pageCount ? history.push(`/types/${type}/${Number(page) + 1}`) : 0,
@@ -40,19 +40,14 @@ const PokemonsByTypePage: React.FC = () => {
   return (
     <div className={style.pokemonsByType} {...handlers}>
       <div className={style.pokemonsWrapper}>
-        {currentType?.pokemons
-          .map((pokemon, index) =>
-            pokemons[pokemon] ? (
+        {currentType?.pokemons &&
+          currentType?.pokemons.map((pokemon, index) =>
               <PokemonBlock
                 pokemon={pokemons[pokemon]}
                 key={`${pokemons[pokemon]?.id}${currentType}` ?? `${index}${currentType}`}
                 onClick = {() => history.push(`/types/${currentType.name}/${page}/${pokemons[pokemon].name}`)}
               />
-            ) : (
-              <div></div>
-            )
-          )
-          .slice((Number(page) - 1) * limit, Number(page) * limit)}
+          ).slice((Number(page) - 1) * limit, Number(page) * limit)}
       </div>
       <Pagination pageCount={pageCount}/>
     </div>

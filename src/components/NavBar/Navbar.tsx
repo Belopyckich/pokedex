@@ -8,8 +8,8 @@ import { SearchContext } from "../../context/SearchContext";
 const Navbar = () => {
   const [name, setName] = useState<string | null>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  
   const {
-    search,
     setSearch,
   } = useContext(SearchContext);
   

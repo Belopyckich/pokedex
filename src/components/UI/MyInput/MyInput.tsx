@@ -1,4 +1,3 @@
-import React, {FC, useEffect} from 'react';
 import style from "./MyInput.module.css";
 
 interface MyInputProps {
@@ -9,7 +8,7 @@ interface MyInputProps {
     type?: string,
     img?: string,
 }
-const MyInput: FC<MyInputProps> = ({property, register, message, placeholder, type, img}) => {
+const MyInput: React.FC<MyInputProps> = ({property, register, message, placeholder, type, img}) => {
 
     return (
         <div className={style.myInputWrapper}>

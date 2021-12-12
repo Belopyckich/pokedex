@@ -1,4 +1,3 @@
-import React, {FC} from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import style from "./Pagination.module.css";
 
@@ -6,7 +5,7 @@ interface PaginationProps {
     pageCount: number
 }
 
-const Pagination: FC<PaginationProps> = ({pageCount}) => {
+const Pagination: React.FC<PaginationProps> = ({pageCount}) => {
   const {page, type} = useParams<{page: string, type: string}>()
   const history = useHistory();
 

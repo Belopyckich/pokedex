@@ -3,7 +3,7 @@
     z-index: 10;
     position: absolute;
     margin-top: 23px;
-    right: 30px;
+    right: 5%;
 }
 .navbar {
     background-color: #4991a7;
@@ -102,15 +102,14 @@
 @media (max-width: 850px) {
 
     .exit {
-        display: none;
-        margin-top: 30px;
-        right: 35%;
+        top: 4%;
+        right: 6%;
     }
     
     .back {
         display: none;
         margin-top: 30px;
-        right: 21%;
+        right: 40%;
     }
     .mobileNavigation {
         display:flex;
@@ -139,6 +138,7 @@
     }
     .navbarWrapper::before {
         margin-top: 0;
+        width: 850px;
         background: url("../../images/NavBar/midNavbarLine.svg") no-repeat;
         top: 0;
     }
@@ -166,10 +166,5 @@
     }
     .back {
         height: 35px;
-        right: 30%
-    }
-    .exit {
-        height: 35px;
-        right: 45%;
     }
 }

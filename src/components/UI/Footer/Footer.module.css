@@ -2,7 +2,6 @@
     font-weight: 500;
     padding: 20px;
     display: flex;
-    height: 25vh;
     gap: 25px;
     background-color: #4991a7;
     border-top: 3px solid white;
@@ -119,6 +118,19 @@
     }
 }
 @media (max-width: 576px) {
+    .component__icon {
+        width: 40px;
+        height: 40px;
+    }
+    .myFooter__component {
+        width: 50%;
+    }
+    .myFooter__header {
+        font-size: 15px;
+    }
+    .component__header, .component__description {
+        font-size: 12px;
+    }
     .ability_description {
         font-size: 22px;
     }
@@ -135,5 +147,6 @@
     
     .myFooter__wrapper {
         gap: 10px;
+        justify-content: space-between;
     }
 }

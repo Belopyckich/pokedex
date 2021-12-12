@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { SearchContext } from '../../../context/SearchContext';
 import style from "./MySelect.module.css";
 

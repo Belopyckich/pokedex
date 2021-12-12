@@ -1,4 +1,3 @@
-import React, {FC, useEffect} from 'react';
 import style from "./MyButton.module.css";
 
 interface MyButtonProps {
@@ -6,7 +5,7 @@ interface MyButtonProps {
     type?: any;
     children: string;
 }
-const MyButton: FC<MyButtonProps> = ({type, children, error}) => {
+const MyButton: React.FC<MyButtonProps> = ({type, children, error}) => {
 
     return (
         <button type={type} disabled={error.find(item => typeof item !== 'undefined')} className={style.myBtn}>

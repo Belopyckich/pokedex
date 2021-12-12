@@ -13,20 +13,11 @@ interface MobileNavigationProps {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 const MobileNavigation : React.FC<MobileNavigationProps> = ({isOpen, setIsOpen}) => {
-    
     const history = useHistory();
-    const {setIsAuth} = useContext(AuthContext)
-
-    const logout = () => {
-        setIsAuth(false);
-        localStorage.removeItem("auth");
-        localStorage.removeItem("user");
-      }
 
     return (
         <div className={style.mobileNavigation}>
             <img src={isOpen ? hamburgerClose : hamburgerOpen} alt="hamburger" className={style.hamburger} onClick={() => setIsOpen(!isOpen)}/>
-            <img style={{display: 'flex'}} src={exit} className={style.exit} onClick={logout} alt="exit" />
             <img
                 style={{display: 'flex'}}
                 src={back}
