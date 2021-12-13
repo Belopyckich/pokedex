@@ -3,9 +3,7 @@ import NavLinks from './NavLinks';
 import style from "./Navbar.module.css";
 import hamburgerOpen from "../../images/NavBar/hamburgerOpen.svg";
 import hamburgerClose from "../../images/NavBar/hamburgerClose.svg";
-import { AuthContext } from '../../context/AuthContext';
 import back from "../../images/NavBar/leftArrow.svg";
-import exit from "../../images/NavBar/exit.svg";
 import { useHistory } from 'react-router-dom';
 
 interface MobileNavigationProps {

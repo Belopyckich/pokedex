@@ -46,9 +46,8 @@
     font-size: 30px;
 }
 
-.back, .exit {
+.back, .logout {
     cursor: pointer;
-    height: 40px;
 }
 
 .input {
@@ -101,8 +100,8 @@
 
 @media (max-width: 850px) {
 
-    .exit {
-        top: 4%;
+    .logout {
+        top: 3%;
         right: 6%;
     }
     
@@ -148,10 +147,7 @@
     .input {
         width: auto;
     }
-    .exit {
-        position: absolute;
-    }
-    .back {
+    .logout, .back {
         position: absolute;
     }
 }

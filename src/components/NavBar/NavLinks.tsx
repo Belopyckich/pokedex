@@ -8,7 +8,7 @@ import { SearchContext } from "../../context/SearchContext";
 import MySelect from "../UI/MySelect/MySelect";
 import style from "./Navbar.module.css";
 import back from "../../images/NavBar/leftArrow.svg";
-import exit from "../../images/NavBar/exit.svg";
+import logout__img from "../../images/NavBar/logout.svg";
 
 const NavLinks : React.FC = () => {
   
@@ -114,7 +114,7 @@ const NavLinks : React.FC = () => {
             <div className={style.disabledSearchWrapper}></div>
           )}
         </div>
-        <img src={exit} className={style.exit} onClick={logout} alt="exit" />
+        <img src={logout__img} className={style.logout} onClick={logout} alt="exit" />
       </div>
     </div>
   );
