@@ -19,7 +19,7 @@ const Pagination: React.FC<PaginationProps> = ({pageCount}) => {
                 : style.pushLeftArrow
             }
             disabled={Number(page) === 1}
-            onClick={() => history.location.pathname.includes('types') ? history.push(`/types/${type}/1`) : history.push('/pokemons/1') }/>
+            onClick={() => history.location.pathname.includes('types') ? history.push(`/pokedex/types/${type}/1`) : history.push('/pokedex/pokemons/1') }/>
           <button
             className={
               Number(page) === 1
@@ -27,7 +27,7 @@ const Pagination: React.FC<PaginationProps> = ({pageCount}) => {
                 : style.leftArrow
             }
             disabled={Number(page) === 1}
-            onClick={() => history.location.pathname.includes('types') ? history.push(`/types/${type}/${Number(page) - 1}`) : history.push(`/pokemons/${Number(page) - 1}`)}
+            onClick={() => history.location.pathname.includes('types') ? history.push(`/pokedex/types/${type}/${Number(page) - 1}`) : history.push(`/pokedex/pokemons/${Number(page) - 1}`)}
           />
           <div className={style.pageNavigation}>
             <div className={style.pageNavigation__text}>{page}/{pageCount}</div>
@@ -39,7 +39,7 @@ const Pagination: React.FC<PaginationProps> = ({pageCount}) => {
                 : style.rightArrow
             }
             disabled={Number(page) === pageCount}
-            onClick={() => history.location.pathname.includes('types') ? history.push(`/types/${type}/${Number(page) + 1}`) : history.push(`/pokemons/${Number(page) + 1}`)}
+            onClick={() => history.location.pathname.includes('types') ? history.push(`/pokedex/types/${type}/${Number(page) + 1}`) : history.push(`/pokedex/pokemons/${Number(page) + 1}`)}
           />
           <button
             className={
@@ -48,7 +48,7 @@ const Pagination: React.FC<PaginationProps> = ({pageCount}) => {
                 : style.pushRightArrow
             }
             disabled={Number(page) === pageCount}
-            onClick={() => history.location.pathname.includes('types') ? history.push(`/types/${type}/${pageCount}`) : history.push(`/pokemons/${pageCount}`)}
+            onClick={() => history.location.pathname.includes('types') ? history.push(`/pokedex/types/${type}/${pageCount}`) : history.push(`/pokedex/pokemons/${pageCount}`)}
           />
         </div>
       </div>
