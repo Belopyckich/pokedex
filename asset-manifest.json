@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/pokedex/static/css/main.8df0dcc9.chunk.css",
-    "main.js": "/pokedex/static/js/main.7560eccd.chunk.js",
-    "main.js.map": "/pokedex/static/js/main.7560eccd.chunk.js.map",
+    "main.css": "/pokedex/static/css/main.95a02414.chunk.css",
+    "main.js": "/pokedex/static/js/main.0ba1c09d.chunk.js",
+    "main.js.map": "/pokedex/static/js/main.0ba1c09d.chunk.js.map",
     "runtime-main.js": "/pokedex/static/js/runtime-main.e8a0bee8.js",
     "runtime-main.js.map": "/pokedex/static/js/runtime-main.e8a0bee8.js.map",
-    "static/js/2.8a542978.chunk.js": "/pokedex/static/js/2.8a542978.chunk.js",
-    "static/js/2.8a542978.chunk.js.map": "/pokedex/static/js/2.8a542978.chunk.js.map",
+    "static/js/2.4cadb0fb.chunk.js": "/pokedex/static/js/2.4cadb0fb.chunk.js",
+    "static/js/2.4cadb0fb.chunk.js.map": "/pokedex/static/js/2.4cadb0fb.chunk.js.map",
     "index.html": "/pokedex/index.html",
-    "static/css/main.8df0dcc9.chunk.css.map": "/pokedex/static/css/main.8df0dcc9.chunk.css.map",
-    "static/js/2.8a542978.chunk.js.LICENSE.txt": "/pokedex/static/js/2.8a542978.chunk.js.LICENSE.txt",
+    "static/css/main.95a02414.chunk.css.map": "/pokedex/static/css/main.95a02414.chunk.css.map",
+    "static/js/2.4cadb0fb.chunk.js.LICENSE.txt": "/pokedex/static/js/2.4cadb0fb.chunk.js.LICENSE.txt",
     "static/media/index.css": "/pokedex/static/media/FlexoRegular.9142cf6d.woff2",
     "static/media/autorisation.569319be.png": "/pokedex/static/media/autorisation.569319be.png",
     "static/media/axios.fdc45ff4.svg": "/pokedex/static/media/axios.fdc45ff4.svg",
@@ -33,7 +33,7 @@
     "static/media/Pagination.module.css": "/pokedex/static/media/rightArrow.8677c32a.svg",
     "static/media/leftArrow.82f7dba3.svg": "/pokedex/static/media/leftArrow.82f7dba3.svg",
     "static/media/LoginPage.module.css": "/pokedex/static/media/minLoginBackground.ce51eebb.png",
-    "static/media/logout.b6950547.svg": "/pokedex/static/media/logout.b6950547.svg",
+    "static/media/logout.771fa135.svg": "/pokedex/static/media/logout.771fa135.svg",
     "static/media/Navbar.module.css": "/pokedex/static/media/navbarLine.7c81020e.svg",
     "static/media/normal.f34b995d.svg": "/pokedex/static/media/normal.f34b995d.svg",
     "static/media/pikachu.0ecf44a5.svg": "/pokedex/static/media/pikachu.0ecf44a5.svg",
@@ -51,8 +51,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.e8a0bee8.js",
-    "static/js/2.8a542978.chunk.js",
-    "static/css/main.8df0dcc9.chunk.css",
-    "static/js/main.7560eccd.chunk.js"
+    "static/js/2.4cadb0fb.chunk.js",
+    "static/css/main.95a02414.chunk.css",
+    "static/js/main.0ba1c09d.chunk.js"
   ]
 }
