@@ -35,7 +35,7 @@ const NavLinks : React.FC = () => {
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    history.push("/pokemons/1");
+    history.push("/pokedex/pokemons/1");
     setSearch(e.target.value);
   }
 
@@ -82,8 +82,8 @@ const NavLinks : React.FC = () => {
             value={searchBy}
             onChange={setSearchBy}
             options={[
-              { value: "/pokemons/1", name: "POKEMONS" },
-              { value: "/types", name: "TYPES" },
+              { value: "/pokedex/pokemons/1", name: "POKEMONS" },
+              { value: "/pokedex/types", name: "TYPES" },
             ]}
           />
         </div>

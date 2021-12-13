@@ -34,7 +34,7 @@ const PokemonTypes: FC = () => {
                         <div className={style.pokemonTypesWrapper}>
                             {types.map(type => 
                                 <div style={{padding: '30px'}} key={type.id}>
-                                    <img src={PokemonTypesIcons[type.name]} onClick={() => history.push(`types/${type.name}/1`)} alt={`${type.name}main`} className={style.pokemonTypeIcon}/>
+                                    <img src={PokemonTypesIcons[type.name]} onClick={() => history.push(`/pokedex/types/${type.name}/1`)} alt={`${type.name}main`} className={style.pokemonTypeIcon}/>
                                         <div className={style.pokemonTypeText}>{type.name}</div>
                                 </div>
                             )}

@@ -23,8 +23,8 @@ const PokemonsByTypePage: React.FC = () => {
   const {limit, setIsLimitActive, setIsSearchBarActive} = useContext(SearchContext);
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => Number(page) !== pageCount ? history.push(`/types/${type}/${Number(page) + 1}`) : 0,
-    onSwipedRight: () => Number(page) !== 1 ? history.push(`/types/${type}/${Number(page) - 1}`) : 0,
+    onSwipedLeft: () => Number(page) !== pageCount ? history.push(`/pokedex/types/${type}/${Number(page) + 1}`) : 0,
+    onSwipedRight: () => Number(page) !== 1 ? history.push(`/pokedex/types/${type}/${Number(page) - 1}`) : 0,
   })
 
   const currentType = types.find((currentType: IPokemonType) => currentType.name === type);
@@ -45,7 +45,7 @@ const PokemonsByTypePage: React.FC = () => {
               <PokemonBlock
                 pokemon={pokemons[pokemon]}
                 key={`${pokemons[pokemon]?.id}${currentType}` ?? `${index}${currentType}`}
-                onClick = {() => history.push(`/types/${currentType.name}/${page}/${pokemons[pokemon].name}`)}
+                onClick = {() => history.push(`/pokedex/types/${currentType.name}/${page}/${pokemons[pokemon].name}`)}
               />
           ).slice((Number(page) - 1) * limit, Number(page) * limit)}
       </div>

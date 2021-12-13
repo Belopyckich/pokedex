@@ -21,7 +21,7 @@ const AppRouter: React.FC = () => {
                     exact={route.exact}
                 />
             )}
-            <Redirect to={`/${searchBy}/1`}/>
+            <Redirect to={`/pokedex/${searchBy}/1`}/>
         </Switch>
 
         :
@@ -35,7 +35,7 @@ const AppRouter: React.FC = () => {
                     exact={route.exact}
                 />
             )}
-            <Redirect to="/login"/>
+            <Redirect to="/pokedex/login"/>
         </Switch>
     );
 };

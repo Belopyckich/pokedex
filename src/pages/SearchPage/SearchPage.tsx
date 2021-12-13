@@ -34,10 +34,10 @@ const SearchPage: React.FC = () => {
   const handlers = useSwipeable({
     onSwipedLeft: () =>
       Number(page) !== pageCount
-        ? history.push(`/pokemons/${Number(page) + 1}`)
+        ? history.push(`/pokedex/pokemons/${Number(page) + 1}`)
         : 0,
     onSwipedRight: () =>
-      Number(page) !== 1 ? history.push(`/pokemons/${Number(page) - 1}`) : 0,
+      Number(page) !== 1 ? history.push(`/pokedex/pokemons/${Number(page) - 1}`) : 0,
   });
 
   const { userLikes } = useContext(AuthContext);
@@ -85,7 +85,7 @@ const SearchPage: React.FC = () => {
                 pokemon={pokemon}
                 key={pokemon.id}
                 onClick={() =>
-                  history.push(`/pokemons/${page}/${pokemon.name}`)
+                  history.push(`/pokedex/pokemons/${page}/${pokemon.name}`)
                 }
               />
             ))
