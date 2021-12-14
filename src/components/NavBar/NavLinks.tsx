@@ -10,7 +10,11 @@ import style from "./Navbar.module.css";
 import back from "../../images/NavBar/leftArrow.svg";
 import logout__img from "../../images/NavBar/logout.svg";
 
-const NavLinks : React.FC = () => {
+interface NavLinksProps {
+  className: string
+}  
+
+const NavLinks : React.FC<NavLinksProps> = ({className}) => {
   
   const { setIsAuth } = useContext(AuthContext);
   const {
@@ -40,8 +44,7 @@ const NavLinks : React.FC = () => {
   }
 
   return (
-    <div>
-      <div className={style.navbarWrapper}>
+      <div className={className}>
         {isSearchBarActive ? (
           <input
             className={style.input}
@@ -116,7 +119,6 @@ const NavLinks : React.FC = () => {
         </div>
         <img src={logout__img} className={style.logout} onClick={logout} alt="exit" />
       </div>
-    </div>
   );
 };
 

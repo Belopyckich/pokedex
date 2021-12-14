@@ -1,4 +1,4 @@
-import React, {FC, useContext, useEffect} from 'react';
+import {FC, useContext} from 'react';
 import style from "./LoginPage.module.css";
 import headerImg from "../../images/loginPageImages/autorisation.png";
 import { AuthContext } from '../../context/AuthContext';

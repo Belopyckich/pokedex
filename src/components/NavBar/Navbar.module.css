@@ -15,7 +15,7 @@
     border-color: white;
 }
 .navbarWrapper {
-    padding: 0 20px;
+    padding: 10px 20px 0;
     gap: 2vw;
     display: flex;
     flex-direction: row;
@@ -23,6 +23,7 @@
     align-items: center;
     height: 100px;
 }
+
 .navbarWrapper::before {
     content: '';
     position: absolute;
@@ -78,6 +79,19 @@
 .mobileNavigation {
     display: none;
 }
+
+@keyframes show-menu {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
 @media (max-width: 1300px) {
     .navbarWrapper {
         gap: 3vw;
@@ -119,7 +133,9 @@
     .userText {
         top: 15px;
     }
+
     .navbarWrapper {
+        z-index: 10;
         background-color: #4991a7;
         position: fixed;
         top: 100px;
@@ -135,6 +151,7 @@
         justify-content: flex-start;
         padding: 70px 30px;
     }
+
     .navbarWrapper::before {
         margin-top: 0;
         width: 850px;

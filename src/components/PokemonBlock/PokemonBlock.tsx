@@ -4,6 +4,10 @@ import { PokemonTypesIcons } from '../../images/typeIcons/typeImages';
 import { IPokemon, PokemonsActionTypes } from '../../types/pokemons';
 import { useDispatch } from 'react-redux';
 import { AuthContext } from '../../context/AuthContext';
+import heart__disabled from "../../images/PokemonPageImages/heart__disabled.svg";
+import heart__enabled from "../../images/PokemonPageImages/heart__enabled.svg";
+
+
 interface PokemonProps {
     pokemon: IPokemon,
     onClick: any
@@ -12,6 +16,7 @@ interface PokemonProps {
 const PokemonBlock: FC<PokemonProps> = ({pokemon, onClick}) => {
     const dispatch = useDispatch()
     const {userLikes, setUserLikes} = useContext(AuthContext);
+    const pokemon__icon = Object.values(pokemon?.sprites).find(sprite => sprite !== null);
 
     const likePokemon = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
@@ -32,8 +37,8 @@ const PokemonBlock: FC<PokemonProps> = ({pokemon, onClick}) => {
     return (
         <div>
             <div className={style.block} onClick={onClick}>
-            <div className={pokemon.isLike ? style.heartIcon : `${style.heartIcon} ${style.heartDisabled}`} onClick={likePokemon}></div>
-            <img className={style.img} src={Object.values(pokemon?.sprites).find(sprite => sprite !== null)} alt={pokemon?.name}/>
+            <img src={pokemon.isLike ? heart__enabled : heart__disabled} className={style.heart__img} onClick={likePokemon} alt="heart"></img>
+            <img className={style.img} src={pokemon__icon} alt={pokemon?.name}/>
             <div className={style.types}>
                 {pokemon?.types.map((type : string) => 
                     <img key={`${type}mini`} className={style.icon}  src={PokemonTypesIcons[type]} alt={type}/>

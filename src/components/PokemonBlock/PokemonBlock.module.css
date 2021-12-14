@@ -16,19 +16,14 @@
     left: -4%;
     top: 10%;
 }
-.heartIcon, .heartDisabled {
+.heart__img {
+    width: 32px;
     position: absolute;
     z-index: 1;
     top: 0;
     left: 0;
-    width: 27px;
-    height: 24px;
     top: 22.4%;
     left: 10%;
-    background: url('../../images/PokemonPageImages/heartEnabled.svg');
-}
-.heartDisabled {
-    background: url('../../images/PokemonPageImages/heartDisabled.svg');
 }
 .icon {
     width: 30px;
@@ -87,7 +82,8 @@
         margin-top: -30px;
         font-size: 20px;
     }
-    .heartIcon, .heartDisabled {
+    .heart__img {
+        width: 24px;
         top: 17.1%;
     }
     .icon {

@@ -11,14 +11,12 @@ const App = () =>  {
   const {loading} = useSelector((state: RootState) => state.pokemons) 
 
   useEffect(() => {
-    if(localStorage.getItem('auth')) {
-      setIsAuth(true);
-    }
-  }, [])
+    localStorage.getItem('auth') && setIsAuth(true);
+  }, [setIsAuth])
 
   return (
     <BrowserRouter>
-        {isAuth && !loading  ? <Navbar/> : <div></div>}
+        {(isAuth && !loading)  && <Navbar/>}
         <AppRouter/>
     </BrowserRouter>
   );

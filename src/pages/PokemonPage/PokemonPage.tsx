@@ -5,33 +5,20 @@ import { useAction } from "../../hooks/useAction";
 import { PokemonTypesIcons } from "../../images/typeIcons/typeImages";
 import { RootState } from "../../redux/reducers";
 import style from "./PokemonPage.module.css";
-import weightIcon from "../../images/PokemonPageImages/weight.svg";
-import heightIcon from "../../images/PokemonPageImages/height.svg";
+import weight__icon from "../../images/PokemonPageImages/weight.svg";
+import height__icon from "../../images/PokemonPageImages/height.svg";
 import { SearchContext } from "../../context/SearchContext";
 import Footer from "../../components/UI/Footer/Footer";
-import { IPokemon } from "../../types/pokemons";
 
 const PokemonPage: React.FC = () => {
+  const {setIsLimitActive, setIsSearchBarActive} = useContext(SearchContext);
+
   const pokemons = useSelector((state: RootState) => state.pokemons.pokemons);
   const abilities = useSelector((state: RootState) => state.pokemons.abilities);
 
   const { pokemon } = useParams<{ pokemon: string }>();
-
-  const {setIsLimitActive, setIsSearchBarActive} = useContext(SearchContext);
    
   const { fetchPokemonAbility } = useAction();
-
-  const choosingImage = (pokemon: IPokemon) => {
-    if (pokemon.sprites.main !== null) {
-      return pokemon.sprites.main;
-    } else if (pokemon.sprites.artwork !== null) {
-      return pokemon.sprites.artwork
-    } else if (pokemon.sprites.graphic !== null) {
-      return pokemon.sprites.graphic;
-    } else {
-      return pokemon.sprites.icon;
-    }
-  }
 
   useEffect(() => {
     setIsLimitActive(false);
@@ -39,11 +26,10 @@ const PokemonPage: React.FC = () => {
     pokemons[pokemon].abilities.forEach((ability) => {
       fetchPokemonAbility(ability.name, ability.url);
     });
-    // pokemons[pokemon].moves.forEach((move) => {
-    //   fetchPokemonMove(move.name, move.url);
-    // });
   }, []);
 
+  const pokemon__img = Object.values(pokemons[pokemon].sprites).find((sprite, index) => sprite !== null && index !== 0);
+  
   return (
     <div className={style.pokemon}>
       <div className={style.info}>
@@ -88,16 +74,16 @@ const PokemonPage: React.FC = () => {
         </div>
           <img
             className={style.img}
-            src={choosingImage(pokemons[pokemon])}
+            src={pokemon__img}
             alt={`${pokemons[pokemon].name}mainimg`}
           ></img>
         <div className={style.properties}>
           <div className={style.property}>
-            <img className={style.propertyIcon} src={weightIcon} alt="weight" />
+            <img className={style.propertyIcon} src={weight__icon} alt="weight" />
             <div className={style.propertyText}>{pokemons[pokemon].weight} kg</div>
           </div>
           <div className={style.property}>
-            <img className={style.propertyIcon} src={heightIcon} alt="height" />
+            <img className={style.propertyIcon} src={height__icon} alt="height" />
             <div className={style.propertyText}>{pokemons[pokemon].height} m</div>
           </div>
           <div className={style.propertyTypeWrapper}>

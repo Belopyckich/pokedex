@@ -1,13 +1,12 @@
-import React from 'react';
 import NavLinks from './NavLinks';
 import style from "./Navbar.module.css";
 
-const Navigation = () => {
+const DesktopNavigation = () => {
     return (
         <div className={style.navigation}>
-            <NavLinks/>
+            <NavLinks className={style.navbarWrapper}/>
         </div>
     );
 };
 
-export default Navigation;
+export default DesktopNavigation;

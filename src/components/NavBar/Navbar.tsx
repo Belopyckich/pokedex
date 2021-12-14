@@ -1,9 +1,10 @@
 import MobileNavigation from "./MobileNavigation";
-import Navigation from "./Navigation";
+import Navigation from "./DesktopNavigation";
 import style from "./Navbar.module.css";
 import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContext";
+import DesktopNavigation from "./DesktopNavigation";
 
 const Navbar = () => {
   const [name, setName] = useState<string | null>("");
@@ -19,14 +20,14 @@ const Navbar = () => {
   return (
     <div style={isOpen ? {borderBottom: 'none'} : {}} className={style.navbar}>
         <NavLink
-          to="/pokemons/1"
+          to="/pokedex/pokemons/1"
           onClick={() => setSearch("")}
           className={style.userText}
         >
           {name} POKEDEX
         </NavLink>
         <MobileNavigation setIsOpen={setIsOpen} isOpen={isOpen}/>
-        <Navigation/>
+        <DesktopNavigation/>
     </div>
   );
 };

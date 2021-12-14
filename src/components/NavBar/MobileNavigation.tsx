@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
 import NavLinks from './NavLinks';
 import style from "./Navbar.module.css";
+import "./Navbar.module.css";
 import hamburgerOpen from "../../images/NavBar/hamburgerOpen.svg";
 import hamburgerClose from "../../images/NavBar/hamburgerClose.svg";
 import back from "../../images/NavBar/leftArrow.svg";
 import { useHistory } from 'react-router-dom';
+import { Transition } from "react-transition-group";
 
 interface MobileNavigationProps {
     isOpen: boolean,
@@ -23,7 +24,7 @@ const MobileNavigation : React.FC<MobileNavigationProps> = ({isOpen, setIsOpen})
                 alt="back"
                 onClick={() => history.goBack()}
             />
-            {isOpen && <NavLinks/>}
+            {isOpen &&<NavLinks className={style.navbarWrapper}/>}
         </div>
     );
 };
