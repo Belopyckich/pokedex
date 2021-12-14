@@ -1,10 +1,29 @@
-.hamburger {
+.hamburger, .hamburgerExitActive, .hamburgerEnterActive {
     cursor: pointer;
     z-index: 10;
     position: absolute;
     margin-top: 23px;
     right: 5%;
 }
+.hamburgerEnterActive {
+    animation: rotate .5s linear;
+}
+.hamburgerExitActive {
+    animation: rotate .5s reverse;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .navbar {
     background-color: #4991a7;
     position: fixed;
@@ -80,18 +99,6 @@
     display: none;
 }
 
-@keyframes show-menu {
-    0% {
-        opacity: 0;
-        transform: translateY(-100px);
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
 @media (max-width: 1300px) {
     .navbarWrapper {
         gap: 3vw;
@@ -134,11 +141,15 @@
         top: 15px;
     }
 
-    .navbarWrapper {
+    .navbarWrapper,
+    .navbarWrapperEnterActive,
+    .navbarWrapperEnterDone,
+    .navbarWrapperExitActive,
+    .navbarWrapperExitDone {
         z-index: 10;
         background-color: #4991a7;
         position: fixed;
-        top: 100px;
+        top: -700px;
         right: 0;
         width: 100%;
         height: auto;
@@ -150,6 +161,28 @@
         align-items: flex-start;
         justify-content: flex-start;
         padding: 70px 30px;
+    }
+
+    .navbarWrapperEnterActive {
+        animation: show-menu .5s forwards;
+    }
+    .navbarWrapperEnterDone {
+        top: 95px;
+    }
+    .navbarWrapperExitActive {
+        animation: show-menu .5s reverse;
+    }
+    .navbarWrapperExitDone {
+        top: -700px;
+    }
+
+    @keyframes show-menu {
+        0% {
+            top: -700px;
+        }
+        100% {
+            top: 95px;
+        }
     }
 
     .navbarWrapper::before {
